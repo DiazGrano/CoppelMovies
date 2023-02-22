@@ -8,23 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		8261FA7929A6717B001638C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261FA7829A6717B001638C8 /* AppDelegate.swift */; };
-		8261FA7B29A6717B001638C8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261FA7A29A6717B001638C8 /* SceneDelegate.swift */; };
 		8261FA7D29A6717B001638C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261FA7C29A6717B001638C8 /* ViewController.swift */; };
-		8261FA8029A6717B001638C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8261FA7E29A6717B001638C8 /* Main.storyboard */; };
 		8261FA8329A6717B001638C8 /* CoppelMovies.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8261FA8129A6717B001638C8 /* CoppelMovies.xcdatamodeld */; };
 		8261FA8529A6717C001638C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8261FA8429A6717C001638C8 /* Assets.xcassets */; };
-		8261FA8829A6717C001638C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8261FA8629A6717C001638C8 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8261FA7529A6717B001638C8 /* CoppelMovies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoppelMovies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8261FA7829A6717B001638C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8261FA7A29A6717B001638C8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8261FA7C29A6717B001638C8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		8261FA7F29A6717B001638C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8261FA8229A6717B001638C8 /* CoppelMovies.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoppelMovies.xcdatamodel; sourceTree = "<group>"; };
 		8261FA8429A6717C001638C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		8261FA8729A6717C001638C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8261FA8929A6717C001638C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -58,16 +52,69 @@
 		8261FA7729A6717B001638C8 /* CoppelMovies */ = {
 			isa = PBXGroup;
 			children = (
-				8261FA7829A6717B001638C8 /* AppDelegate.swift */,
-				8261FA7A29A6717B001638C8 /* SceneDelegate.swift */,
-				8261FA7C29A6717B001638C8 /* ViewController.swift */,
-				8261FA7E29A6717B001638C8 /* Main.storyboard */,
+				8261FA9129A67398001638C8 /* Main */,
+				8261FA8F29A67388001638C8 /* Modules */,
+				8261FA9029A6738E001638C8 /* Utils */,
 				8261FA8429A6717C001638C8 /* Assets.xcassets */,
-				8261FA8629A6717C001638C8 /* LaunchScreen.storyboard */,
 				8261FA8929A6717C001638C8 /* Info.plist */,
 				8261FA8129A6717B001638C8 /* CoppelMovies.xcdatamodeld */,
 			);
 			path = CoppelMovies;
+			sourceTree = "<group>";
+		};
+		8261FA8F29A67388001638C8 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				8261FA9229A673B9001638C8 /* Login */,
+				8261FA9329A673BE001638C8 /* Catalog */,
+				8261FA9429A673C3001638C8 /* Profile */,
+				8261FA9529A673CA001638C8 /* MovieDetails */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		8261FA9029A6738E001638C8 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		8261FA9129A67398001638C8 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				8261FA7829A6717B001638C8 /* AppDelegate.swift */,
+				8261FA7C29A6717B001638C8 /* ViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		8261FA9229A673B9001638C8 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		8261FA9329A673BE001638C8 /* Catalog */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Catalog;
+			sourceTree = "<group>";
+		};
+		8261FA9429A673C3001638C8 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		8261FA9529A673CA001638C8 /* MovieDetails */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MovieDetails;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,9 +175,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8261FA8829A6717C001638C8 /* LaunchScreen.storyboard in Resources */,
 				8261FA8529A6717C001638C8 /* Assets.xcassets in Resources */,
-				8261FA8029A6717B001638C8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,31 +188,11 @@
 			files = (
 				8261FA7D29A6717B001638C8 /* ViewController.swift in Sources */,
 				8261FA7929A6717B001638C8 /* AppDelegate.swift in Sources */,
-				8261FA7B29A6717B001638C8 /* SceneDelegate.swift in Sources */,
 				8261FA8329A6717B001638C8 /* CoppelMovies.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		8261FA7E29A6717B001638C8 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8261FA7F29A6717B001638C8 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		8261FA8629A6717C001638C8 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8261FA8729A6717C001638C8 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		8261FA8A29A6717C001638C8 /* Debug */ = {
@@ -220,7 +245,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -274,7 +299,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -291,13 +316,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DX65CAV54R;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CoppelMovies/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -305,9 +331,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = LuisGrano.CoppelMovies;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -318,13 +347,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DX65CAV54R;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CoppelMovies/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -332,9 +362,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = LuisGrano.CoppelMovies;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
