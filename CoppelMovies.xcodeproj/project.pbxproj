@@ -8,18 +8,56 @@
 
 /* Begin PBXBuildFile section */
 		8261FA7929A6717B001638C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261FA7829A6717B001638C8 /* AppDelegate.swift */; };
-		8261FA7D29A6717B001638C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261FA7C29A6717B001638C8 /* ViewController.swift */; };
 		8261FA8329A6717B001638C8 /* CoppelMovies.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8261FA8129A6717B001638C8 /* CoppelMovies.xcdatamodeld */; };
 		8261FA8529A6717C001638C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8261FA8429A6717C001638C8 /* Assets.xcassets */; };
+		8261FA9729A67961001638C8 /* CMLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261FA9629A67961001638C8 /* CMLoginView.swift */; };
+		8261FA9929A6796A001638C8 /* CMLoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261FA9829A6796A001638C8 /* CMLoginPresenter.swift */; };
+		8261FA9B29A67972001638C8 /* CMLoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261FA9A29A67972001638C8 /* CMLoginInteractor.swift */; };
+		8261FA9D29A6797C001638C8 /* CMLoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261FA9C29A6797C001638C8 /* CMLoginRouter.swift */; };
+		8261FA9F29A6798F001638C8 /* CMLoginEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261FA9E29A6798F001638C8 /* CMLoginEntity.swift */; };
+		8261FAA129A679A3001638C8 /* CMCatalogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261FAA029A679A3001638C8 /* CMCatalogView.swift */; };
+		8261FAA329A679AC001638C8 /* CMCatalogPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261FAA229A679AC001638C8 /* CMCatalogPresenter.swift */; };
+		8261FAA529A679B4001638C8 /* CMCatalogInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261FAA429A679B4001638C8 /* CMCatalogInteractor.swift */; };
+		8261FAA729A679BA001638C8 /* CMCatalogRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261FAA629A679BA001638C8 /* CMCatalogRouter.swift */; };
+		8261FAA929A679C4001638C8 /* CMCatalogEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261FAA829A679C4001638C8 /* CMCatalogEntity.swift */; };
+		8261FAAD29A679E6001638C8 /* CMProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261FAAC29A679E6001638C8 /* CMProfileView.swift */; };
+		8261FAAF29A679ED001638C8 /* CMProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261FAAE29A679ED001638C8 /* CMProfilePresenter.swift */; };
+		8261FAB129A679F4001638C8 /* CMProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261FAB029A679F4001638C8 /* CMProfileInteractor.swift */; };
+		8261FAB329A679FB001638C8 /* CMProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261FAB229A679FB001638C8 /* CMProfileRouter.swift */; };
+		8261FAB529A67A00001638C8 /* CMProfileEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261FAB429A67A00001638C8 /* CMProfileEntity.swift */; };
+		8261FABB29A67A4B001638C8 /* CMDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261FABA29A67A4B001638C8 /* CMDetailsView.swift */; };
+		8261FABD29A67A55001638C8 /* CMDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261FABC29A67A55001638C8 /* CMDetailsPresenter.swift */; };
+		8261FABF29A67A5D001638C8 /* CMDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261FABE29A67A5D001638C8 /* CMDetailsInteractor.swift */; };
+		8261FAC129A67A66001638C8 /* CMDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261FAC029A67A66001638C8 /* CMDetailsRouter.swift */; };
+		8261FAC329A67A72001638C8 /* CMDetailsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261FAC229A67A72001638C8 /* CMDetailsEntity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8261FA7529A6717B001638C8 /* CoppelMovies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoppelMovies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8261FA7829A6717B001638C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8261FA7C29A6717B001638C8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8261FA8229A6717B001638C8 /* CoppelMovies.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoppelMovies.xcdatamodel; sourceTree = "<group>"; };
 		8261FA8429A6717C001638C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8261FA8929A6717C001638C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8261FA9629A67961001638C8 /* CMLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMLoginView.swift; sourceTree = "<group>"; };
+		8261FA9829A6796A001638C8 /* CMLoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMLoginPresenter.swift; sourceTree = "<group>"; };
+		8261FA9A29A67972001638C8 /* CMLoginInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMLoginInteractor.swift; sourceTree = "<group>"; };
+		8261FA9C29A6797C001638C8 /* CMLoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMLoginRouter.swift; sourceTree = "<group>"; };
+		8261FA9E29A6798F001638C8 /* CMLoginEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMLoginEntity.swift; sourceTree = "<group>"; };
+		8261FAA029A679A3001638C8 /* CMCatalogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMCatalogView.swift; sourceTree = "<group>"; };
+		8261FAA229A679AC001638C8 /* CMCatalogPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMCatalogPresenter.swift; sourceTree = "<group>"; };
+		8261FAA429A679B4001638C8 /* CMCatalogInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMCatalogInteractor.swift; sourceTree = "<group>"; };
+		8261FAA629A679BA001638C8 /* CMCatalogRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMCatalogRouter.swift; sourceTree = "<group>"; };
+		8261FAA829A679C4001638C8 /* CMCatalogEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMCatalogEntity.swift; sourceTree = "<group>"; };
+		8261FAAC29A679E6001638C8 /* CMProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMProfileView.swift; sourceTree = "<group>"; };
+		8261FAAE29A679ED001638C8 /* CMProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMProfilePresenter.swift; sourceTree = "<group>"; };
+		8261FAB029A679F4001638C8 /* CMProfileInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMProfileInteractor.swift; sourceTree = "<group>"; };
+		8261FAB229A679FB001638C8 /* CMProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMProfileRouter.swift; sourceTree = "<group>"; };
+		8261FAB429A67A00001638C8 /* CMProfileEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMProfileEntity.swift; sourceTree = "<group>"; };
+		8261FABA29A67A4B001638C8 /* CMDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMDetailsView.swift; sourceTree = "<group>"; };
+		8261FABC29A67A55001638C8 /* CMDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMDetailsPresenter.swift; sourceTree = "<group>"; };
+		8261FABE29A67A5D001638C8 /* CMDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMDetailsInteractor.swift; sourceTree = "<group>"; };
+		8261FAC029A67A66001638C8 /* CMDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMDetailsRouter.swift; sourceTree = "<group>"; };
+		8261FAC229A67A72001638C8 /* CMDetailsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMDetailsEntity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,7 +106,7 @@
 				8261FA9229A673B9001638C8 /* Login */,
 				8261FA9329A673BE001638C8 /* Catalog */,
 				8261FA9429A673C3001638C8 /* Profile */,
-				8261FA9529A673CA001638C8 /* MovieDetails */,
+				8261FA9529A673CA001638C8 /* Details */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -84,7 +122,6 @@
 			isa = PBXGroup;
 			children = (
 				8261FA7829A6717B001638C8 /* AppDelegate.swift */,
-				8261FA7C29A6717B001638C8 /* ViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -92,6 +129,11 @@
 		8261FA9229A673B9001638C8 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				8261FA9629A67961001638C8 /* CMLoginView.swift */,
+				8261FA9829A6796A001638C8 /* CMLoginPresenter.swift */,
+				8261FA9A29A67972001638C8 /* CMLoginInteractor.swift */,
+				8261FA9C29A6797C001638C8 /* CMLoginRouter.swift */,
+				8261FA9E29A6798F001638C8 /* CMLoginEntity.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -99,6 +141,11 @@
 		8261FA9329A673BE001638C8 /* Catalog */ = {
 			isa = PBXGroup;
 			children = (
+				8261FAA029A679A3001638C8 /* CMCatalogView.swift */,
+				8261FAA229A679AC001638C8 /* CMCatalogPresenter.swift */,
+				8261FAA429A679B4001638C8 /* CMCatalogInteractor.swift */,
+				8261FAA629A679BA001638C8 /* CMCatalogRouter.swift */,
+				8261FAA829A679C4001638C8 /* CMCatalogEntity.swift */,
 			);
 			path = Catalog;
 			sourceTree = "<group>";
@@ -106,15 +153,25 @@
 		8261FA9429A673C3001638C8 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				8261FAAC29A679E6001638C8 /* CMProfileView.swift */,
+				8261FAAE29A679ED001638C8 /* CMProfilePresenter.swift */,
+				8261FAB029A679F4001638C8 /* CMProfileInteractor.swift */,
+				8261FAB229A679FB001638C8 /* CMProfileRouter.swift */,
+				8261FAB429A67A00001638C8 /* CMProfileEntity.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
 		};
-		8261FA9529A673CA001638C8 /* MovieDetails */ = {
+		8261FA9529A673CA001638C8 /* Details */ = {
 			isa = PBXGroup;
 			children = (
+				8261FABA29A67A4B001638C8 /* CMDetailsView.swift */,
+				8261FABC29A67A55001638C8 /* CMDetailsPresenter.swift */,
+				8261FABE29A67A5D001638C8 /* CMDetailsInteractor.swift */,
+				8261FAC029A67A66001638C8 /* CMDetailsRouter.swift */,
+				8261FAC229A67A72001638C8 /* CMDetailsEntity.swift */,
 			);
-			path = MovieDetails;
+			path = Details;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,8 +243,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8261FA7D29A6717B001638C8 /* ViewController.swift in Sources */,
+				8261FAB129A679F4001638C8 /* CMProfileInteractor.swift in Sources */,
+				8261FABD29A67A55001638C8 /* CMDetailsPresenter.swift in Sources */,
+				8261FAA729A679BA001638C8 /* CMCatalogRouter.swift in Sources */,
+				8261FA9B29A67972001638C8 /* CMLoginInteractor.swift in Sources */,
+				8261FAA929A679C4001638C8 /* CMCatalogEntity.swift in Sources */,
+				8261FABB29A67A4B001638C8 /* CMDetailsView.swift in Sources */,
+				8261FA9929A6796A001638C8 /* CMLoginPresenter.swift in Sources */,
+				8261FA9729A67961001638C8 /* CMLoginView.swift in Sources */,
+				8261FABF29A67A5D001638C8 /* CMDetailsInteractor.swift in Sources */,
+				8261FA9D29A6797C001638C8 /* CMLoginRouter.swift in Sources */,
+				8261FAA129A679A3001638C8 /* CMCatalogView.swift in Sources */,
+				8261FAB329A679FB001638C8 /* CMProfileRouter.swift in Sources */,
+				8261FAAF29A679ED001638C8 /* CMProfilePresenter.swift in Sources */,
+				8261FAB529A67A00001638C8 /* CMProfileEntity.swift in Sources */,
+				8261FA9F29A6798F001638C8 /* CMLoginEntity.swift in Sources */,
+				8261FAA329A679AC001638C8 /* CMCatalogPresenter.swift in Sources */,
+				8261FAC129A67A66001638C8 /* CMDetailsRouter.swift in Sources */,
 				8261FA7929A6717B001638C8 /* AppDelegate.swift in Sources */,
+				8261FAC329A67A72001638C8 /* CMDetailsEntity.swift in Sources */,
+				8261FAA529A679B4001638C8 /* CMCatalogInteractor.swift in Sources */,
+				8261FAAD29A679E6001638C8 /* CMProfileView.swift in Sources */,
 				8261FA8329A6717B001638C8 /* CoppelMovies.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -245,7 +321,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -299,7 +375,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -323,7 +399,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -333,7 +409,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -354,7 +430,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -364,7 +440,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
