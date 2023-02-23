@@ -6,6 +6,9 @@
 //
 
 import Foundation
+import UIKit
+
+
 protocol CMDetailsPresenterProtocol: AnyObject {
     var view: CMDetailsViewProtocol? { get set }
     var router: CMDetailsRouterProtocol? { get set }
@@ -14,8 +17,8 @@ protocol CMDetailsPresenterProtocol: AnyObject {
 
 class CMDetailsPresenter: CMDetailsPresenterProtocol {
     weak var view: CMDetailsViewProtocol?
-    weak var router: CMDetailsRouterProtocol?
-    weak var interactor: CMDetailsInteractorProtocol?
+    var router: CMDetailsRouterProtocol?
+    var interactor: CMDetailsInteractorProtocol?
     
-    
+
 }
