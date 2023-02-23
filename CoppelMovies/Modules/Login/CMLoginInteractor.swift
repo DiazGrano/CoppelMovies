@@ -8,10 +8,14 @@
 import Foundation
 protocol CMLoginInteractorProtocol: AnyObject {
     var presenter: CMLoginPresenterProtocol? { get set }
+    
+    func postLogin(username: String, credential: String)
 }
 
 class CMLoginInteractor: CMLoginInteractorProtocol {
     weak var presenter: CMLoginPresenterProtocol?
     
-    
+    func postLogin(username: String, credential: String) {
+        
+    }
 }
