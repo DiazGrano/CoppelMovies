@@ -30,6 +30,13 @@
 		8261FABF29A67A5D001638C8 /* CMDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261FABE29A67A5D001638C8 /* CMDetailsInteractor.swift */; };
 		8261FAC129A67A66001638C8 /* CMDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261FAC029A67A66001638C8 /* CMDetailsRouter.swift */; };
 		8261FAC329A67A72001638C8 /* CMDetailsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261FAC229A67A72001638C8 /* CMDetailsEntity.swift */; };
+		8261FAC829A68ED3001638C8 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261FAC729A68ED3001638C8 /* UIColor+Extension.swift */; };
+		8261FACA29A68F05001638C8 /* CGFloat+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261FAC929A68F05001638C8 /* CGFloat+Extension.swift */; };
+		8261FACD29A68F6E001638C8 /* CMTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261FACC29A68F6E001638C8 /* CMTextFieldView.swift */; };
+		8261FAD029A68FA8001638C8 /* CMButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261FACF29A68FA8001638C8 /* CMButtonView.swift */; };
+		8261FAD629A69A2B001638C8 /* CMMovieViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261FAD529A69A2B001638C8 /* CMMovieViewCell.swift */; };
+		8261FAD929A6E2A9001638C8 /* CMCatalogCategoriesEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261FAD829A6E2A9001638C8 /* CMCatalogCategoriesEnum.swift */; };
+		8261FADB29A6FB5D001638C8 /* CMFavoriteButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261FADA29A6FB5D001638C8 /* CMFavoriteButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +65,13 @@
 		8261FABE29A67A5D001638C8 /* CMDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMDetailsInteractor.swift; sourceTree = "<group>"; };
 		8261FAC029A67A66001638C8 /* CMDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMDetailsRouter.swift; sourceTree = "<group>"; };
 		8261FAC229A67A72001638C8 /* CMDetailsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMDetailsEntity.swift; sourceTree = "<group>"; };
+		8261FAC729A68ED3001638C8 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		8261FAC929A68F05001638C8 /* CGFloat+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extension.swift"; sourceTree = "<group>"; };
+		8261FACC29A68F6E001638C8 /* CMTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMTextFieldView.swift; sourceTree = "<group>"; };
+		8261FACF29A68FA8001638C8 /* CMButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMButtonView.swift; sourceTree = "<group>"; };
+		8261FAD529A69A2B001638C8 /* CMMovieViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMMovieViewCell.swift; sourceTree = "<group>"; };
+		8261FAD829A6E2A9001638C8 /* CMCatalogCategoriesEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMCatalogCategoriesEnum.swift; sourceTree = "<group>"; };
+		8261FADA29A6FB5D001638C8 /* CMFavoriteButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMFavoriteButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +128,10 @@
 		8261FA9029A6738E001638C8 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				8261FAD729A6E291001638C8 /* Enums */,
+				8261FAC629A68EA3001638C8 /* Network */,
+				8261FAC529A68E9E001638C8 /* Extensions */,
+				8261FAC429A68E98001638C8 /* Components */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -172,6 +190,73 @@
 				8261FAC229A67A72001638C8 /* CMDetailsEntity.swift */,
 			);
 			path = Details;
+			sourceTree = "<group>";
+		};
+		8261FAC429A68E98001638C8 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				8261FAD429A69A16001638C8 /* Cells */,
+				8261FAD129A690C0001638C8 /* Loaders */,
+				8261FACE29A68F99001638C8 /* Buttons */,
+				8261FACB29A68F5B001638C8 /* TextFields */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		8261FAC529A68E9E001638C8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8261FAC729A68ED3001638C8 /* UIColor+Extension.swift */,
+				8261FAC929A68F05001638C8 /* CGFloat+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8261FAC629A68EA3001638C8 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		8261FACB29A68F5B001638C8 /* TextFields */ = {
+			isa = PBXGroup;
+			children = (
+				8261FACC29A68F6E001638C8 /* CMTextFieldView.swift */,
+			);
+			path = TextFields;
+			sourceTree = "<group>";
+		};
+		8261FACE29A68F99001638C8 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				8261FACF29A68FA8001638C8 /* CMButtonView.swift */,
+				8261FADA29A6FB5D001638C8 /* CMFavoriteButtonView.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		8261FAD129A690C0001638C8 /* Loaders */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Loaders;
+			sourceTree = "<group>";
+		};
+		8261FAD429A69A16001638C8 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				8261FAD529A69A2B001638C8 /* CMMovieViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		8261FAD729A6E291001638C8 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				8261FAD829A6E2A9001638C8 /* CMCatalogCategoriesEnum.swift */,
+			);
+			path = Enums;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,23 +330,30 @@
 			files = (
 				8261FAB129A679F4001638C8 /* CMProfileInteractor.swift in Sources */,
 				8261FABD29A67A55001638C8 /* CMDetailsPresenter.swift in Sources */,
+				8261FADB29A6FB5D001638C8 /* CMFavoriteButtonView.swift in Sources */,
+				8261FACA29A68F05001638C8 /* CGFloat+Extension.swift in Sources */,
 				8261FAA729A679BA001638C8 /* CMCatalogRouter.swift in Sources */,
 				8261FA9B29A67972001638C8 /* CMLoginInteractor.swift in Sources */,
 				8261FAA929A679C4001638C8 /* CMCatalogEntity.swift in Sources */,
+				8261FAD029A68FA8001638C8 /* CMButtonView.swift in Sources */,
 				8261FABB29A67A4B001638C8 /* CMDetailsView.swift in Sources */,
 				8261FA9929A6796A001638C8 /* CMLoginPresenter.swift in Sources */,
 				8261FA9729A67961001638C8 /* CMLoginView.swift in Sources */,
 				8261FABF29A67A5D001638C8 /* CMDetailsInteractor.swift in Sources */,
 				8261FA9D29A6797C001638C8 /* CMLoginRouter.swift in Sources */,
+				8261FAD929A6E2A9001638C8 /* CMCatalogCategoriesEnum.swift in Sources */,
 				8261FAA129A679A3001638C8 /* CMCatalogView.swift in Sources */,
 				8261FAB329A679FB001638C8 /* CMProfileRouter.swift in Sources */,
+				8261FAD629A69A2B001638C8 /* CMMovieViewCell.swift in Sources */,
 				8261FAAF29A679ED001638C8 /* CMProfilePresenter.swift in Sources */,
 				8261FAB529A67A00001638C8 /* CMProfileEntity.swift in Sources */,
 				8261FA9F29A6798F001638C8 /* CMLoginEntity.swift in Sources */,
 				8261FAA329A679AC001638C8 /* CMCatalogPresenter.swift in Sources */,
 				8261FAC129A67A66001638C8 /* CMDetailsRouter.swift in Sources */,
+				8261FAC829A68ED3001638C8 /* UIColor+Extension.swift in Sources */,
 				8261FA7929A6717B001638C8 /* AppDelegate.swift in Sources */,
 				8261FAC329A67A72001638C8 /* CMDetailsEntity.swift in Sources */,
+				8261FACD29A68F6E001638C8 /* CMTextFieldView.swift in Sources */,
 				8261FAA529A679B4001638C8 /* CMCatalogInteractor.swift in Sources */,
 				8261FAAD29A679E6001638C8 /* CMProfileView.swift in Sources */,
 				8261FA8329A6717B001638C8 /* CoppelMovies.xcdatamodeld in Sources */,
