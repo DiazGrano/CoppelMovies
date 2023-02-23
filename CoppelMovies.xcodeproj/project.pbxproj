@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		82130A6629A7CCB6006D9E7D /* CMMovieGenreViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82130A6529A7CCB6006D9E7D /* CMMovieGenreViewCell.swift */; };
+		82130A6829A7CCCA006D9E7D /* CMMovieVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82130A6729A7CCCA006D9E7D /* CMMovieVideoCell.swift */; };
+		82130A6A29A7CCE6006D9E7D /* CMProductionCompanyViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82130A6929A7CCE6006D9E7D /* CMProductionCompanyViewCell.swift */; };
+		82130A6C29A7D3C1006D9E7D /* CMDetailsGenresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82130A6B29A7D3C1006D9E7D /* CMDetailsGenresView.swift */; };
+		82130A6E29A7D813006D9E7D /* CMDetailsVideosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82130A6D29A7D813006D9E7D /* CMDetailsVideosView.swift */; };
+		82130A7029A7D966006D9E7D /* CMDetailsProductionCompaniesVew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82130A6F29A7D966006D9E7D /* CMDetailsProductionCompaniesVew.swift */; };
 		8261FA7929A6717B001638C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261FA7829A6717B001638C8 /* AppDelegate.swift */; };
 		8261FA8329A6717B001638C8 /* CoppelMovies.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8261FA8129A6717B001638C8 /* CoppelMovies.xcdatamodeld */; };
 		8261FA8529A6717C001638C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8261FA8429A6717C001638C8 /* Assets.xcassets */; };
@@ -40,6 +46,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		82130A6529A7CCB6006D9E7D /* CMMovieGenreViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMMovieGenreViewCell.swift; sourceTree = "<group>"; };
+		82130A6729A7CCCA006D9E7D /* CMMovieVideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMMovieVideoCell.swift; sourceTree = "<group>"; };
+		82130A6929A7CCE6006D9E7D /* CMProductionCompanyViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMProductionCompanyViewCell.swift; sourceTree = "<group>"; };
+		82130A6B29A7D3C1006D9E7D /* CMDetailsGenresView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMDetailsGenresView.swift; sourceTree = "<group>"; };
+		82130A6D29A7D813006D9E7D /* CMDetailsVideosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMDetailsVideosView.swift; sourceTree = "<group>"; };
+		82130A6F29A7D966006D9E7D /* CMDetailsProductionCompaniesVew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMDetailsProductionCompaniesVew.swift; sourceTree = "<group>"; };
 		8261FA7529A6717B001638C8 /* CoppelMovies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoppelMovies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8261FA7829A6717B001638C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8261FA8229A6717B001638C8 /* CoppelMovies.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoppelMovies.xcdatamodel; sourceTree = "<group>"; };
@@ -85,6 +97,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		82130A6029A7CC20006D9E7D /* CollectionsSections */ = {
+			isa = PBXGroup;
+			children = (
+				82130A6329A7CC3A006D9E7D /* ProductionCompanies */,
+				82130A6229A7CC35006D9E7D /* Videos */,
+				82130A6129A7CC2B006D9E7D /* Genres */,
+			);
+			path = CollectionsSections;
+			sourceTree = "<group>";
+		};
+		82130A6129A7CC2B006D9E7D /* Genres */ = {
+			isa = PBXGroup;
+			children = (
+				82130A6B29A7D3C1006D9E7D /* CMDetailsGenresView.swift */,
+			);
+			path = Genres;
+			sourceTree = "<group>";
+		};
+		82130A6229A7CC35006D9E7D /* Videos */ = {
+			isa = PBXGroup;
+			children = (
+				82130A6D29A7D813006D9E7D /* CMDetailsVideosView.swift */,
+			);
+			path = Videos;
+			sourceTree = "<group>";
+		};
+		82130A6329A7CC3A006D9E7D /* ProductionCompanies */ = {
+			isa = PBXGroup;
+			children = (
+				82130A6F29A7D966006D9E7D /* CMDetailsProductionCompaniesVew.swift */,
+			);
+			path = ProductionCompanies;
+			sourceTree = "<group>";
+		};
 		8261FA6C29A6717B001638C8 = {
 			isa = PBXGroup;
 			children = (
@@ -183,6 +229,7 @@
 		8261FA9529A673CA001638C8 /* Details */ = {
 			isa = PBXGroup;
 			children = (
+				82130A6029A7CC20006D9E7D /* CollectionsSections */,
 				8261FABA29A67A4B001638C8 /* CMDetailsView.swift */,
 				8261FABC29A67A55001638C8 /* CMDetailsPresenter.swift */,
 				8261FABE29A67A5D001638C8 /* CMDetailsInteractor.swift */,
@@ -247,6 +294,9 @@
 			isa = PBXGroup;
 			children = (
 				8261FAD529A69A2B001638C8 /* CMMovieViewCell.swift */,
+				82130A6529A7CCB6006D9E7D /* CMMovieGenreViewCell.swift */,
+				82130A6729A7CCCA006D9E7D /* CMMovieVideoCell.swift */,
+				82130A6929A7CCE6006D9E7D /* CMProductionCompanyViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -343,7 +393,11 @@
 				8261FA9D29A6797C001638C8 /* CMLoginRouter.swift in Sources */,
 				8261FAD929A6E2A9001638C8 /* CMCatalogCategoriesEnum.swift in Sources */,
 				8261FAA129A679A3001638C8 /* CMCatalogView.swift in Sources */,
+				82130A6A29A7CCE6006D9E7D /* CMProductionCompanyViewCell.swift in Sources */,
+				82130A6829A7CCCA006D9E7D /* CMMovieVideoCell.swift in Sources */,
+				82130A6629A7CCB6006D9E7D /* CMMovieGenreViewCell.swift in Sources */,
 				8261FAB329A679FB001638C8 /* CMProfileRouter.swift in Sources */,
+				82130A6C29A7D3C1006D9E7D /* CMDetailsGenresView.swift in Sources */,
 				8261FAD629A69A2B001638C8 /* CMMovieViewCell.swift in Sources */,
 				8261FAAF29A679ED001638C8 /* CMProfilePresenter.swift in Sources */,
 				8261FAB529A67A00001638C8 /* CMProfileEntity.swift in Sources */,
@@ -351,9 +405,11 @@
 				8261FAA329A679AC001638C8 /* CMCatalogPresenter.swift in Sources */,
 				8261FAC129A67A66001638C8 /* CMDetailsRouter.swift in Sources */,
 				8261FAC829A68ED3001638C8 /* UIColor+Extension.swift in Sources */,
+				82130A6E29A7D813006D9E7D /* CMDetailsVideosView.swift in Sources */,
 				8261FA7929A6717B001638C8 /* AppDelegate.swift in Sources */,
 				8261FAC329A67A72001638C8 /* CMDetailsEntity.swift in Sources */,
 				8261FACD29A68F6E001638C8 /* CMTextFieldView.swift in Sources */,
+				82130A7029A7D966006D9E7D /* CMDetailsProductionCompaniesVew.swift in Sources */,
 				8261FAA529A679B4001638C8 /* CMCatalogInteractor.swift in Sources */,
 				8261FAAD29A679E6001638C8 /* CMProfileView.swift in Sources */,
 				8261FA8329A6717B001638C8 /* CoppelMovies.xcdatamodeld in Sources */,
