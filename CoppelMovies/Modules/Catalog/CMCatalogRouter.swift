@@ -10,6 +10,12 @@ import UIKit
 
 protocol CMCatalogRouterProtocol: AnyObject {
     static func create() -> UIViewController
+    
+    func navigateToProfile(controller: UIViewController)
+    
+    func navigateToDetails(movieID: Int, controller: UIViewController)
+    
+    func navigateBack(navigation: UINavigationController?)
 }
 
 class CMCatalogRouter: CMCatalogRouterProtocol {
@@ -28,5 +34,21 @@ class CMCatalogRouter: CMCatalogRouterProtocol {
         interactor.presenter = presenter
         
         return view
+    }
+    
+    func navigateToProfile(controller: UIViewController) {
+        controller.present(CMProfileRouter.create(), animated: true)
+    }
+    
+    
+    func navigateToDetails(movieID: Int, controller: UIViewController) {
+        controller.present(CMDetailsRouter.create(), animated: true)
+    }
+    
+    func navigateBack(navigation: UINavigationController?){
+        guard let nonNilNav = navigation else {
+            return
+        }
+        nonNilNav.popViewController(animated: true)
     }
 }
