@@ -10,6 +10,8 @@ import UIKit
 
 protocol CMProfileRouterProtocol: AnyObject {
     static func create() -> UIViewController
+    
+    func navigateToDetails(movieID: Int, controller: UIViewController)
 }
 
 class CMProfileRouter: CMProfileRouterProtocol {
@@ -28,5 +30,9 @@ class CMProfileRouter: CMProfileRouterProtocol {
         interactor.presenter = presenter
         
         return view
+    }
+    
+    func navigateToDetails(movieID: Int, controller: UIViewController) {
+        controller.present(CMDetailsRouter.create(), animated: true)
     }
 }

@@ -9,28 +9,190 @@ import Foundation
 import UIKit
 
 
-protocol CMProfileViewProtocol where Self: UIViewController {
+protocol CMProfileViewProtocol: AnyObject {
     var presenter: CMProfilePresenterProtocol? { get set }
 }
 
 class CMProfileView: UIViewController, CMProfileViewProtocol {
-    weak var presenter: CMProfilePresenterProtocol?
+    var presenter: CMProfilePresenterProtocol?
+    var catalogData: [CMCatalogEntity] = []
+    
+    
+    lazy var containerView: UIView = {
+       let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
+    lazy var profileTitleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Profile"
+        label.font = .systemFont(ofSize: 16, weight: .bold)
+        label.textColor = .cmGreen
+        
+        return label
+    }()
+    
+    lazy var profilePictureImage: UIImageView = {
+       let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.backgroundColor = .blue
+        return imageView
+    }()
+    
+    lazy var profileNameLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "@luisgrano"
+        label.font = .systemFont(ofSize: 12, weight: .medium)
+        label.textColor = .cmGreen
+        
+        return label
+    }()
+    
+    lazy var favoriteMoviesTitleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Favorite movies"
+        label.font = .systemFont(ofSize: 14, weight: .semibold)
+        label.textColor = .cmGreen
+        
+        return label
+    }()
+    
+    lazy var favoritesCollection: UICollectionView = {
+        let collectionLayout = UICollectionViewFlowLayout.init()
+        collectionLayout.scrollDirection = .horizontal
+        
+       let collection = UICollectionView(frame: .zero, collectionViewLayout: collectionLayout)
+        collection.translatesAutoresizingMaskIntoConstraints = false
+        collection.isPagingEnabled = false
+        collection.delegate = self
+        collection.dataSource = self
+        collection.register(CMMovieViewCell.self, forCellWithReuseIdentifier: CMMovieViewCell.identifier)
+        collection.backgroundColor = .clear
+        collection.showsHorizontalScrollIndicator = false
+        return collection
+    }()
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .cmDarkGreen
+        
+        catalogData = [CMCatalogEntity(image: nil,
+                                        title: "Pepe",
+                                        releaseDate: "jun 17, 2021",
+                                        rating: "10",
+                                        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sagittis risus quis neque dictum, ac consectetur ex tincidunt. Donec maximus nec arcu quis interdum."),
+                       CMCatalogEntity(image: nil,
+                                        title: "Pepe",
+                                        releaseDate: "jun 17, 2021",
+                                        rating: "10",
+                                        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sagittis risus quis neque dictum, ac consectetur ex tincidunt. Donec maximus nec arcu quis interdum."),
+                       CMCatalogEntity(image: nil,
+                                        title: "Pepe",
+                                        releaseDate: "jun 17, 2021",
+                                        rating: "10",
+                                        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sagittis risus quis neque dictum, ac consectetur ex tincidunt. Donec maximus nec arcu quis interdum."),
+                       CMCatalogEntity(image: nil,
+                                        title: "Pepe",
+                                        releaseDate: "jun 17, 2021",
+                                        rating: "10",
+                                        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sagittis risus quis neque dictum, ac consectetur ex tincidunt. Donec maximus nec arcu quis interdum."),
+                       CMCatalogEntity(image: nil,
+                                        title: "Pepe",
+                                        releaseDate: "jun 17, 2021",
+                                        rating: "10",
+                                        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sagittis risus quis neque dictum, ac consectetur ex tincidunt. Donec maximus nec arcu quis interdum.")]
+        
+        
         setUI()
         setConstraints()
+        
+        favoritesCollection.reloadData()
     }
     
     
     private func setUI(){
+        view.addSubview(containerView)
+        containerView.addSubview(profileTitleLabel)
+        containerView.addSubview(profilePictureImage)
+        containerView.addSubview(profileNameLabel)
+        containerView.addSubview(favoriteMoviesTitleLabel)
+        containerView.addSubview(favoritesCollection)
     }
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
+            containerView.topAnchor.constraint(equalTo: view.topAnchor, constant: .dimen40),
+            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .dimen20),
+            containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -.dimen20),
+            containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -.dimen40),
             
+            profileTitleLabel.topAnchor.constraint(equalTo: containerView.topAnchor),
+            profileTitleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            profileTitleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            
+            profilePictureImage.topAnchor.constraint(equalTo: profileTitleLabel.bottomAnchor, constant: .dimen20),
+            profilePictureImage.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            profilePictureImage.heightAnchor.constraint(greaterThanOrEqualToConstant: 50),
+            profilePictureImage.heightAnchor.constraint(lessThanOrEqualToConstant: 150),
+            profilePictureImage.widthAnchor.constraint(equalTo: profilePictureImage.heightAnchor),
+            profilePictureImage.bottomAnchor.constraint(lessThanOrEqualTo: favoriteMoviesTitleLabel.topAnchor, constant: -.dimen20),
+            
+            profileNameLabel.centerYAnchor.constraint(equalTo: profilePictureImage.centerYAnchor),
+            profileNameLabel.leadingAnchor.constraint(equalTo: profilePictureImage.trailingAnchor, constant: .dimen20),
+            profileNameLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            
+            favoriteMoviesTitleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            favoriteMoviesTitleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            favoriteMoviesTitleLabel.bottomAnchor.constraint(equalTo: favoritesCollection.topAnchor, constant: -.dimen20),
+            
+            favoritesCollection.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            favoritesCollection.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            favoritesCollection.heightAnchor.constraint(equalToConstant: 300),
+            favoritesCollection.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
         ])
     }
 }
+
+
+
+
+extension CMProfileView: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.presenter?.requestDetails(movieID: catalogData[indexPath.row].id ?? 0, controller: self)
+    }
+}
+
+extension CMProfileView: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = ((containerView.frame.width - .dimen20)/2.0)
+        let height = ((containerView.frame.height - .dimen20)/2.0)
+        return CGSize(width: width, height: height <= 300 ? 300 : height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return .dimen20
+    }
+}
+
+extension CMProfileView: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return catalogData.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CMMovieViewCell.identifier, for: indexPath) as? CMMovieViewCell
+        cell?.setData(movieModel: catalogData[indexPath.row])
+        
+        return cell ?? UICollectionViewCell()
+    }
+}
+
