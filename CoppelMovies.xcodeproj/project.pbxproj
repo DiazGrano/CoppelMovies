@@ -13,6 +13,19 @@
 		82130A6C29A7D3C1006D9E7D /* CMDetailsGenresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82130A6B29A7D3C1006D9E7D /* CMDetailsGenresView.swift */; };
 		82130A6E29A7D813006D9E7D /* CMDetailsVideosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82130A6D29A7D813006D9E7D /* CMDetailsVideosView.swift */; };
 		82130A7029A7D966006D9E7D /* CMDetailsProductionCompaniesVew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82130A6F29A7D966006D9E7D /* CMDetailsProductionCompaniesVew.swift */; };
+		82130A7429A7F409006D9E7D /* CMAPIServicesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82130A7329A7F409006D9E7D /* CMAPIServicesManager.swift */; };
+		82130A7829A7F4D1006D9E7D /* CMAPIServicesURLBaseEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82130A7729A7F4D1006D9E7D /* CMAPIServicesURLBaseEnum.swift */; };
+		82130A7A29A7F4E1006D9E7D /* CMAPIServicesURLPrefixEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82130A7929A7F4E1006D9E7D /* CMAPIServicesURLPrefixEnum.swift */; };
+		82130A7C29A7F4EC006D9E7D /* CMAPIServicesURLEndpointEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82130A7B29A7F4EC006D9E7D /* CMAPIServicesURLEndpointEnum.swift */; };
+		82130A7E29A7F53D006D9E7D /* CMAPIServicesRequestMethodEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82130A7D29A7F53D006D9E7D /* CMAPIServicesRequestMethodEnum.swift */; };
+		82130A8029A800FE006D9E7D /* CMTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82130A7F29A800FE006D9E7D /* CMTokenResponse.swift */; };
+		82130A8229A801A7006D9E7D /* CMLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82130A8129A801A7006D9E7D /* CMLoader.swift */; };
+		82130A8929A85824006D9E7D /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82130A8829A85824006D9E7D /* UIImageView+Extension.swift */; };
+		82130A8C29A859BA006D9E7D /* CMImageConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82130A8B29A859BA006D9E7D /* CMImageConfig.swift */; };
+		82130A8E29A85A92006D9E7D /* CMImageConfigSizeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82130A8D29A85A92006D9E7D /* CMImageConfigSizeEnum.swift */; };
+		82130A9029A86D35006D9E7D /* CMCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82130A8F29A86D35006D9E7D /* CMCoreDataManager.swift */; };
+		82130A9829A8746A006D9E7D /* FavoriteMovie+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82130A9629A8746A006D9E7D /* FavoriteMovie+CoreDataClass.swift */; };
+		82130A9929A8746A006D9E7D /* FavoriteMovie+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82130A9729A8746A006D9E7D /* FavoriteMovie+CoreDataProperties.swift */; };
 		8261FA7929A6717B001638C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261FA7829A6717B001638C8 /* AppDelegate.swift */; };
 		8261FA8329A6717B001638C8 /* CoppelMovies.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8261FA8129A6717B001638C8 /* CoppelMovies.xcdatamodeld */; };
 		8261FA8529A6717C001638C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8261FA8429A6717C001638C8 /* Assets.xcassets */; };
@@ -52,6 +65,19 @@
 		82130A6B29A7D3C1006D9E7D /* CMDetailsGenresView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMDetailsGenresView.swift; sourceTree = "<group>"; };
 		82130A6D29A7D813006D9E7D /* CMDetailsVideosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMDetailsVideosView.swift; sourceTree = "<group>"; };
 		82130A6F29A7D966006D9E7D /* CMDetailsProductionCompaniesVew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMDetailsProductionCompaniesVew.swift; sourceTree = "<group>"; };
+		82130A7329A7F409006D9E7D /* CMAPIServicesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMAPIServicesManager.swift; sourceTree = "<group>"; };
+		82130A7729A7F4D1006D9E7D /* CMAPIServicesURLBaseEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMAPIServicesURLBaseEnum.swift; sourceTree = "<group>"; };
+		82130A7929A7F4E1006D9E7D /* CMAPIServicesURLPrefixEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMAPIServicesURLPrefixEnum.swift; sourceTree = "<group>"; };
+		82130A7B29A7F4EC006D9E7D /* CMAPIServicesURLEndpointEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMAPIServicesURLEndpointEnum.swift; sourceTree = "<group>"; };
+		82130A7D29A7F53D006D9E7D /* CMAPIServicesRequestMethodEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMAPIServicesRequestMethodEnum.swift; sourceTree = "<group>"; };
+		82130A7F29A800FE006D9E7D /* CMTokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMTokenResponse.swift; sourceTree = "<group>"; };
+		82130A8129A801A7006D9E7D /* CMLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMLoader.swift; sourceTree = "<group>"; };
+		82130A8829A85824006D9E7D /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		82130A8B29A859BA006D9E7D /* CMImageConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMImageConfig.swift; sourceTree = "<group>"; };
+		82130A8D29A85A92006D9E7D /* CMImageConfigSizeEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMImageConfigSizeEnum.swift; sourceTree = "<group>"; };
+		82130A8F29A86D35006D9E7D /* CMCoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMCoreDataManager.swift; sourceTree = "<group>"; };
+		82130A9629A8746A006D9E7D /* FavoriteMovie+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoriteMovie+CoreDataClass.swift"; sourceTree = "<group>"; };
+		82130A9729A8746A006D9E7D /* FavoriteMovie+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoriteMovie+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8261FA7529A6717B001638C8 /* CoppelMovies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoppelMovies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8261FA7829A6717B001638C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8261FA8229A6717B001638C8 /* CoppelMovies.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoppelMovies.xcdatamodel; sourceTree = "<group>"; };
@@ -131,6 +157,24 @@
 			path = ProductionCompanies;
 			sourceTree = "<group>";
 		};
+		82130A8A29A85989006D9E7D /* Singletons */ = {
+			isa = PBXGroup;
+			children = (
+				82130A8B29A859BA006D9E7D /* CMImageConfig.swift */,
+				82130A8F29A86D35006D9E7D /* CMCoreDataManager.swift */,
+			);
+			path = Singletons;
+			sourceTree = "<group>";
+		};
+		82130A9529A86F87006D9E7D /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				82130A9629A8746A006D9E7D /* FavoriteMovie+CoreDataClass.swift */,
+				82130A9729A8746A006D9E7D /* FavoriteMovie+CoreDataProperties.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		8261FA6C29A6717B001638C8 = {
 			isa = PBXGroup;
 			children = (
@@ -174,6 +218,8 @@
 		8261FA9029A6738E001638C8 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				82130A9529A86F87006D9E7D /* CoreData */,
+				82130A8A29A85989006D9E7D /* Singletons */,
 				8261FAD729A6E291001638C8 /* Enums */,
 				8261FAC629A68EA3001638C8 /* Network */,
 				8261FAC529A68E9E001638C8 /* Extensions */,
@@ -255,6 +301,7 @@
 			children = (
 				8261FAC729A68ED3001638C8 /* UIColor+Extension.swift */,
 				8261FAC929A68F05001638C8 /* CGFloat+Extension.swift */,
+				82130A8829A85824006D9E7D /* UIImageView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -262,6 +309,8 @@
 		8261FAC629A68EA3001638C8 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				82130A7329A7F409006D9E7D /* CMAPIServicesManager.swift */,
+				82130A7F29A800FE006D9E7D /* CMTokenResponse.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -286,6 +335,7 @@
 		8261FAD129A690C0001638C8 /* Loaders */ = {
 			isa = PBXGroup;
 			children = (
+				82130A8129A801A7006D9E7D /* CMLoader.swift */,
 			);
 			path = Loaders;
 			sourceTree = "<group>";
@@ -305,6 +355,11 @@
 			isa = PBXGroup;
 			children = (
 				8261FAD829A6E2A9001638C8 /* CMCatalogCategoriesEnum.swift */,
+				82130A7729A7F4D1006D9E7D /* CMAPIServicesURLBaseEnum.swift */,
+				82130A7929A7F4E1006D9E7D /* CMAPIServicesURLPrefixEnum.swift */,
+				82130A7B29A7F4EC006D9E7D /* CMAPIServicesURLEndpointEnum.swift */,
+				82130A7D29A7F53D006D9E7D /* CMAPIServicesRequestMethodEnum.swift */,
+				82130A8D29A85A92006D9E7D /* CMImageConfigSizeEnum.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -389,12 +444,18 @@
 				8261FABB29A67A4B001638C8 /* CMDetailsView.swift in Sources */,
 				8261FA9929A6796A001638C8 /* CMLoginPresenter.swift in Sources */,
 				8261FA9729A67961001638C8 /* CMLoginView.swift in Sources */,
+				82130A8029A800FE006D9E7D /* CMTokenResponse.swift in Sources */,
 				8261FABF29A67A5D001638C8 /* CMDetailsInteractor.swift in Sources */,
+				82130A7429A7F409006D9E7D /* CMAPIServicesManager.swift in Sources */,
 				8261FA9D29A6797C001638C8 /* CMLoginRouter.swift in Sources */,
+				82130A8E29A85A92006D9E7D /* CMImageConfigSizeEnum.swift in Sources */,
 				8261FAD929A6E2A9001638C8 /* CMCatalogCategoriesEnum.swift in Sources */,
 				8261FAA129A679A3001638C8 /* CMCatalogView.swift in Sources */,
 				82130A6A29A7CCE6006D9E7D /* CMProductionCompanyViewCell.swift in Sources */,
+				82130A9829A8746A006D9E7D /* FavoriteMovie+CoreDataClass.swift in Sources */,
+				82130A7829A7F4D1006D9E7D /* CMAPIServicesURLBaseEnum.swift in Sources */,
 				82130A6829A7CCCA006D9E7D /* CMMovieVideoCell.swift in Sources */,
+				82130A7A29A7F4E1006D9E7D /* CMAPIServicesURLPrefixEnum.swift in Sources */,
 				82130A6629A7CCB6006D9E7D /* CMMovieGenreViewCell.swift in Sources */,
 				8261FAB329A679FB001638C8 /* CMProfileRouter.swift in Sources */,
 				82130A6C29A7D3C1006D9E7D /* CMDetailsGenresView.swift in Sources */,
@@ -405,14 +466,21 @@
 				8261FAA329A679AC001638C8 /* CMCatalogPresenter.swift in Sources */,
 				8261FAC129A67A66001638C8 /* CMDetailsRouter.swift in Sources */,
 				8261FAC829A68ED3001638C8 /* UIColor+Extension.swift in Sources */,
+				82130A9029A86D35006D9E7D /* CMCoreDataManager.swift in Sources */,
 				82130A6E29A7D813006D9E7D /* CMDetailsVideosView.swift in Sources */,
 				8261FA7929A6717B001638C8 /* AppDelegate.swift in Sources */,
+				82130A8929A85824006D9E7D /* UIImageView+Extension.swift in Sources */,
 				8261FAC329A67A72001638C8 /* CMDetailsEntity.swift in Sources */,
 				8261FACD29A68F6E001638C8 /* CMTextFieldView.swift in Sources */,
+				82130A7E29A7F53D006D9E7D /* CMAPIServicesRequestMethodEnum.swift in Sources */,
 				82130A7029A7D966006D9E7D /* CMDetailsProductionCompaniesVew.swift in Sources */,
+				82130A7C29A7F4EC006D9E7D /* CMAPIServicesURLEndpointEnum.swift in Sources */,
+				82130A8229A801A7006D9E7D /* CMLoader.swift in Sources */,
 				8261FAA529A679B4001638C8 /* CMCatalogInteractor.swift in Sources */,
 				8261FAAD29A679E6001638C8 /* CMProfileView.swift in Sources */,
 				8261FA8329A6717B001638C8 /* CoppelMovies.xcdatamodeld in Sources */,
+				82130A9929A8746A006D9E7D /* FavoriteMovie+CoreDataProperties.swift in Sources */,
+				82130A8C29A859BA006D9E7D /* CMImageConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
