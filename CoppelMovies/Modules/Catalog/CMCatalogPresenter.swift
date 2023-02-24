@@ -14,6 +14,11 @@ protocol CMCatalogPresenterProtocol: AnyObject {
     var router: CMCatalogRouterProtocol? { get set }
     var interactor: CMCatalogInteractorProtocol? { get set }
     
+    func requestMovies(page: Int, endpoint: String)
+    func responseMovies(response: CMCatalogResponse)
+    
+    func responseFailure(error: String)
+    
     func requestProfile(controller: UIViewController)
     
     func requestDetails(movieID: Int, controller: UIViewController)
@@ -31,7 +36,15 @@ class CMCatalogPresenter: CMCatalogPresenterProtocol {
         self.router?.navigateToProfile(controller: controller)
     }
     
+    func requestMovies(page: Int, endpoint: String) {
+        CMLoader.show()
+        self.interactor?.getMovies(page: page, endpoint: endpoint)
+    }
     
+    func responseMovies(response: CMCatalogResponse){
+        CMLoader.hide()
+        self.view?.notifyMovies(response: response)
+    }
     
     func requestDetails(movieID: Int, controller: UIViewController) {
         self.router?.navigateToDetails(movieID: movieID, controller: controller)
@@ -43,5 +56,9 @@ class CMCatalogPresenter: CMCatalogPresenterProtocol {
     
     func responseLogout() {
         self.router?.navigateBack(navigation: self.view?.notifyGetNavigation())
+    }
+    
+    func responseFailure(error: String) {
+        CMLoader.hide()
     }
 }

@@ -12,13 +12,21 @@ import UIKit
 protocol CMCatalogViewProtocol: AnyObject {
     var presenter: CMCatalogPresenterProtocol? { get set }
     
+    func notifyMovies(response: CMCatalogResponse)
+    
     func notifyGetNavigation() -> UINavigationController?
 }
 
-class CMCatalogView: UIViewController, CMCatalogViewProtocol {
+
+class CMCatalogView: UIViewController {
     var presenter: CMCatalogPresenterProtocol?
-    var catalogData: [CMCatalogEntity] = []
-    var catalogCategories: [CMCatalogCategoriesEnum] = [.popular, .topRated, .latest, .upcoming]
+    var catalogData: [CMCatalogEntity] = [CMCatalogEntity(category: .popular),
+                                          CMCatalogEntity(category: .topRated),
+                                          CMCatalogEntity(category: .upcoming),
+                                          CMCatalogEntity(category: .favorites)]
+    private var currentCategory: Int = 0
+    private var isLoading: Bool = false
+    
     
     lazy var containerView: UIView = {
        let view = UIView()
@@ -30,15 +38,16 @@ class CMCatalogView: UIViewController, CMCatalogViewProtocol {
     lazy var categoriesSegmentedControl: UISegmentedControl = {
        let segmentedControl = UISegmentedControl()
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
-        
-        for (index, value) in catalogCategories.enumerated() {
-            segmentedControl.insertSegment(withTitle: value.rawValue, at: index, animated: true)
-        }
-        
         segmentedControl.backgroundColor = .clear
         segmentedControl.selectedSegmentTintColor = .cmGray
-        
         segmentedControl.addTarget(self, action: #selector(categorySelected), for: .valueChanged)
+        
+        for n in 0..<catalogData.count {
+            segmentedControl.insertSegment(withTitle: catalogData[n].category.rawValue, at: n, animated: true)
+        }
+        
+        segmentedControl.selectedSegmentIndex = self.currentCategory
+        segmentedControl.isSelected = true
         
         return segmentedControl
     }()
@@ -53,6 +62,7 @@ class CMCatalogView: UIViewController, CMCatalogViewProtocol {
         collection.register(CMMovieViewCell.self, forCellWithReuseIdentifier: CMMovieViewCell.identifier)
         collection.backgroundColor = .clear
         collection.showsVerticalScrollIndicator = false
+        collection.bounces = false
         return collection
     }()
     
@@ -70,39 +80,10 @@ class CMCatalogView: UIViewController, CMCatalogViewProtocol {
                                                                                           target: self,
                                                                                           action: #selector(optionsSheet))
         
-        
-        
-        
-        catalogData = [CMCatalogEntity(image: nil,
-                                        title: "Pepe",
-                                        releaseDate: "jun 17, 2021",
-                                        rating: "10",
-                                        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sagittis risus quis neque dictum, ac consectetur ex tincidunt. Donec maximus nec arcu quis interdum."),
-                       CMCatalogEntity(image: nil,
-                                        title: "Pepe",
-                                        releaseDate: "jun 17, 2021",
-                                        rating: "10",
-                                        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sagittis risus quis neque dictum, ac consectetur ex tincidunt. Donec maximus nec arcu quis interdum."),
-                       CMCatalogEntity(image: nil,
-                                        title: "Pepe",
-                                        releaseDate: "jun 17, 2021",
-                                        rating: "10",
-                                        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sagittis risus quis neque dictum, ac consectetur ex tincidunt. Donec maximus nec arcu quis interdum."),
-                       CMCatalogEntity(image: nil,
-                                        title: "Pepe",
-                                        releaseDate: "jun 17, 2021",
-                                        rating: "10",
-                                        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sagittis risus quis neque dictum, ac consectetur ex tincidunt. Donec maximus nec arcu quis interdum."),
-                       CMCatalogEntity(image: nil,
-                                        title: "Pepe",
-                                        releaseDate: "jun 17, 2021",
-                                        rating: "10",
-                                        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sagittis risus quis neque dictum, ac consectetur ex tincidunt. Donec maximus nec arcu quis interdum.")]
-        
         setUI()
         setConstraints()
         
-        catalogCollection.reloadData()
+        requestMovies()
     }
     
     
@@ -132,9 +113,7 @@ class CMCatalogView: UIViewController, CMCatalogViewProtocol {
     }
     
     
-    func notifyGetNavigation() -> UINavigationController? {
-        return self.navigationController
-    }
+    
     
     
     
@@ -156,15 +135,97 @@ class CMCatalogView: UIViewController, CMCatalogViewProtocol {
     
     
     @objc func categorySelected() {
+        catalogData[currentCategory].offset = catalogCollection.contentOffset
         
+        currentCategory = categoriesSegmentedControl.selectedSegmentIndex
+        catalogCollection.reloadData()
+        catalogCollection.contentOffset = catalogData[currentCategory].offset
+        
+        if catalogData[currentCategory].movies.isEmpty {
+            requestMovies()
+        }
+    }
+    
+    
+    private func requestMovies(requestNewPage: Bool = false) {
+        let catalog = catalogData[currentCategory]
+        
+        guard catalog.category != .favorites else {
+            getFavorites()
+            return
+        }
+
+        let page = (catalog.currentPage + (requestNewPage ? 1 : 0))
+        
+        if (page <= catalog.totalPages) {
+            isLoading = true
+            self.presenter?.requestMovies(page: page,
+                                          endpoint: catalog.category.getEndpoint())
+        }
+    }
+    
+    
+    private func checkIfNewPageIsNeeded(cell: Int) {
+        
+    }
+    
+    private func getFavorites() {
+        for n in 0..<catalogData.count {
+            if catalogData[n].category == .favorites {
+                CMCoreDataManager.shared.getAllFavoritesCellData { [weak self] favoritesData in
+                    self?.catalogData[n].movies = favoritesData
+                    if self?.catalogData[self?.currentCategory ?? 0].category == .favorites {
+                        self?.catalogCollection.reloadData()
+                    }
+                }
+                return
+            }
+        }
+    }
+}
+
+extension CMCatalogView: CMCatalogViewProtocol {
+    func notifyMovies(response: CMCatalogResponse) {
+        catalogData[currentCategory].currentPage = response.page ?? 1
+        catalogData[currentCategory].totalPages = response.total_pages ?? Int.max
+        for movieData in (response.results ?? []) {
+            catalogData[currentCategory].movies.append(CMCatalogCellModel(posterPath: movieData.poster_path,
+                                                                          overview: movieData.overview,
+                                                                          releaseDate: movieData.release_date,
+                                                                          genreIDs: movieData.genre_ids,
+                                                                          id: movieData.id,
+                                                                          title: movieData.title,
+                                                                          voteAverage: movieData.vote_average))
+        }
+        
+        catalogCollection.reloadData()
+        
+        isLoading = false
+    }
+    
+    func notifyGetNavigation() -> UINavigationController? {
+        return self.navigationController
     }
 }
 
 
-
 extension CMCatalogView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.presenter?.requestDetails(movieID: catalogData[indexPath.row].id ?? 0, controller: self)
+        self.presenter?.requestDetails(movieID: catalogData[currentCategory].movies[indexPath.row].id ?? 0, controller: self)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard catalogData[currentCategory].category != .favorites else {
+            return
+        }
+        
+        let  height = scrollView.frame.size.height
+        let contentYoffset = scrollView.contentOffset.y
+        let distanceFromBottom = scrollView.contentSize.height - contentYoffset
+
+        if (distanceFromBottom - 20 < height) && (contentYoffset > 0) && !isLoading{
+            self.requestMovies(requestNewPage: true)
+        }
     }
 }
 
@@ -183,14 +244,20 @@ extension CMCatalogView: UICollectionViewDelegateFlowLayout {
 extension CMCatalogView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return catalogData.count
+        return catalogData[currentCategory].movies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CMMovieViewCell.identifier, for: indexPath) as? CMMovieViewCell
-        cell?.setData(movieModel: catalogData[indexPath.row])
-        
+        cell?.setData(movieModel: catalogData[currentCategory].movies[indexPath.row], delegate: self)
+
         return cell ?? UICollectionViewCell()
     }
 }
 
+
+extension CMCatalogView: CMMovieViewCellProtocol {
+    func favoriteCellChanged() {
+        getFavorites()
+    }
+}

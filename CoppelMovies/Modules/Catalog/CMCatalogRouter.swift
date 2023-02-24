@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol CMCatalogRouterProtocol: AnyObject {
-    static func create() -> UIViewController
+    static func create(username: String) -> UIViewController
     
     func navigateToProfile(controller: UIViewController)
     
@@ -19,7 +19,9 @@ protocol CMCatalogRouterProtocol: AnyObject {
 }
 
 class CMCatalogRouter: CMCatalogRouterProtocol {
-    static func create() -> UIViewController {
+    private var username: String = ""
+    
+    static func create(username: String) -> UIViewController {
         let presenter = CMCatalogPresenter()
         let view = CMCatalogView()
         let interactor = CMCatalogInteractor()
@@ -33,11 +35,13 @@ class CMCatalogRouter: CMCatalogRouterProtocol {
         
         interactor.presenter = presenter
         
+        router.username = username
+        
         return view
     }
     
     func navigateToProfile(controller: UIViewController) {
-        controller.present(CMProfileRouter.create(), animated: true)
+        controller.present(CMProfileRouter.create(username: self.username), animated: true)
     }
     
     

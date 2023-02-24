@@ -7,21 +7,21 @@
 
 import Foundation
 enum CMCatalogCategoriesEnum: String {
-    case latest = "Latest"
+    case favorites = "Favorites"
     case popular = "Popular"
     case topRated = "Top Rated"
-    case upcoming = "Upconming"
+    case upcoming = "Upcoming"
     
     func getEndpoint() -> String {
         switch self {
-        case .latest:
+        case .favorites:
             return ""
         case .popular:
-            return ""
+            return "/popular"
         case .topRated:
-            return ""
+            return "/top_rated"
         case .upcoming:
-            return ""
+            return "/upcoming"
         }
     }
 }
