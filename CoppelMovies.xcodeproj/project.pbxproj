@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		67F6A9733EEF46C323A5C646 /* Pods_CoppelMovies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 861F40AF962C25EFEAD08ABB /* Pods_CoppelMovies.framework */; };
 		82130A6629A7CCB6006D9E7D /* CMMovieGenreViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82130A6529A7CCB6006D9E7D /* CMMovieGenreViewCell.swift */; };
 		82130A6829A7CCCA006D9E7D /* CMMovieVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82130A6729A7CCCA006D9E7D /* CMMovieVideoCell.swift */; };
 		82130A6A29A7CCE6006D9E7D /* CMProductionCompanyViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82130A6929A7CCE6006D9E7D /* CMProductionCompanyViewCell.swift */; };
@@ -26,6 +27,8 @@
 		82130A9029A86D35006D9E7D /* CMCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82130A8F29A86D35006D9E7D /* CMCoreDataManager.swift */; };
 		82130A9829A8746A006D9E7D /* FavoriteMovie+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82130A9629A8746A006D9E7D /* FavoriteMovie+CoreDataClass.swift */; };
 		82130A9929A8746A006D9E7D /* FavoriteMovie+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82130A9729A8746A006D9E7D /* FavoriteMovie+CoreDataProperties.swift */; };
+		823A191229A9434100DFB6D3 /* CMVideoSitesEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823A191129A9434100DFB6D3 /* CMVideoSitesEnum.swift */; };
+		823A191429A974FB00DFB6D3 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823A191329A974FB00DFB6D3 /* Int+Extension.swift */; };
 		8261FA7929A6717B001638C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261FA7829A6717B001638C8 /* AppDelegate.swift */; };
 		8261FA8329A6717B001638C8 /* CoppelMovies.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8261FA8129A6717B001638C8 /* CoppelMovies.xcdatamodeld */; };
 		8261FA8529A6717C001638C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8261FA8429A6717C001638C8 /* Assets.xcassets */; };
@@ -59,6 +62,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		223B28AA0F8D4B6012E70AD7 /* Pods-CoppelMovies.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoppelMovies.release.xcconfig"; path = "Target Support Files/Pods-CoppelMovies/Pods-CoppelMovies.release.xcconfig"; sourceTree = "<group>"; };
 		82130A6529A7CCB6006D9E7D /* CMMovieGenreViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMMovieGenreViewCell.swift; sourceTree = "<group>"; };
 		82130A6729A7CCCA006D9E7D /* CMMovieVideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMMovieVideoCell.swift; sourceTree = "<group>"; };
 		82130A6929A7CCE6006D9E7D /* CMProductionCompanyViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMProductionCompanyViewCell.swift; sourceTree = "<group>"; };
@@ -78,6 +82,8 @@
 		82130A8F29A86D35006D9E7D /* CMCoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMCoreDataManager.swift; sourceTree = "<group>"; };
 		82130A9629A8746A006D9E7D /* FavoriteMovie+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoriteMovie+CoreDataClass.swift"; sourceTree = "<group>"; };
 		82130A9729A8746A006D9E7D /* FavoriteMovie+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoriteMovie+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		823A191129A9434100DFB6D3 /* CMVideoSitesEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMVideoSitesEnum.swift; sourceTree = "<group>"; };
+		823A191329A974FB00DFB6D3 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		8261FA7529A6717B001638C8 /* CoppelMovies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoppelMovies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8261FA7829A6717B001638C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8261FA8229A6717B001638C8 /* CoppelMovies.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoppelMovies.xcdatamodel; sourceTree = "<group>"; };
@@ -110,6 +116,8 @@
 		8261FAD529A69A2B001638C8 /* CMMovieViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMMovieViewCell.swift; sourceTree = "<group>"; };
 		8261FAD829A6E2A9001638C8 /* CMCatalogCategoriesEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMCatalogCategoriesEnum.swift; sourceTree = "<group>"; };
 		8261FADA29A6FB5D001638C8 /* CMFavoriteButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMFavoriteButtonView.swift; sourceTree = "<group>"; };
+		861F40AF962C25EFEAD08ABB /* Pods_CoppelMovies.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoppelMovies.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCB104749FAAA7B31BDD3A1C /* Pods-CoppelMovies.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoppelMovies.debug.xcconfig"; path = "Target Support Files/Pods-CoppelMovies/Pods-CoppelMovies.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,12 +125,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67F6A9733EEF46C323A5C646 /* Pods_CoppelMovies.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6F0B3CB2C467D167DC130557 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FCB104749FAAA7B31BDD3A1C /* Pods-CoppelMovies.debug.xcconfig */,
+				223B28AA0F8D4B6012E70AD7 /* Pods-CoppelMovies.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		82130A6029A7CC20006D9E7D /* CollectionsSections */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,6 +198,8 @@
 			children = (
 				8261FA7729A6717B001638C8 /* CoppelMovies */,
 				8261FA7629A6717B001638C8 /* Products */,
+				6F0B3CB2C467D167DC130557 /* Pods */,
+				B9F701A60584C59B90D76043 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -302,6 +322,7 @@
 				8261FAC729A68ED3001638C8 /* UIColor+Extension.swift */,
 				8261FAC929A68F05001638C8 /* CGFloat+Extension.swift */,
 				82130A8829A85824006D9E7D /* UIImageView+Extension.swift */,
+				823A191329A974FB00DFB6D3 /* Int+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -360,8 +381,17 @@
 				82130A7B29A7F4EC006D9E7D /* CMAPIServicesURLEndpointEnum.swift */,
 				82130A7D29A7F53D006D9E7D /* CMAPIServicesRequestMethodEnum.swift */,
 				82130A8D29A85A92006D9E7D /* CMImageConfigSizeEnum.swift */,
+				823A191129A9434100DFB6D3 /* CMVideoSitesEnum.swift */,
 			);
 			path = Enums;
+			sourceTree = "<group>";
+		};
+		B9F701A60584C59B90D76043 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				861F40AF962C25EFEAD08ABB /* Pods_CoppelMovies.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -371,9 +401,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8261FA8C29A6717C001638C8 /* Build configuration list for PBXNativeTarget "CoppelMovies" */;
 			buildPhases = (
+				03C634ABA0844A1E6E0346FC /* [CP] Check Pods Manifest.lock */,
 				8261FA7129A6717B001638C8 /* Sources */,
 				8261FA7229A6717B001638C8 /* Frameworks */,
 				8261FA7329A6717B001638C8 /* Resources */,
+				EEF58806CE1C73C61441F747 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -428,12 +460,55 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		03C634ABA0844A1E6E0346FC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CoppelMovies-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EEF58806CE1C73C61441F747 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CoppelMovies/Pods-CoppelMovies-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CoppelMovies/Pods-CoppelMovies-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CoppelMovies/Pods-CoppelMovies-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8261FA7129A6717B001638C8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				8261FAB129A679F4001638C8 /* CMProfileInteractor.swift in Sources */,
+				823A191229A9434100DFB6D3 /* CMVideoSitesEnum.swift in Sources */,
 				8261FABD29A67A55001638C8 /* CMDetailsPresenter.swift in Sources */,
 				8261FADB29A6FB5D001638C8 /* CMFavoriteButtonView.swift in Sources */,
 				8261FACA29A68F05001638C8 /* CGFloat+Extension.swift in Sources */,
@@ -467,6 +542,7 @@
 				8261FAC129A67A66001638C8 /* CMDetailsRouter.swift in Sources */,
 				8261FAC829A68ED3001638C8 /* UIColor+Extension.swift in Sources */,
 				82130A9029A86D35006D9E7D /* CMCoreDataManager.swift in Sources */,
+				823A191429A974FB00DFB6D3 /* Int+Extension.swift in Sources */,
 				82130A6E29A7D813006D9E7D /* CMDetailsVideosView.swift in Sources */,
 				8261FA7929A6717B001638C8 /* AppDelegate.swift in Sources */,
 				82130A8929A85824006D9E7D /* UIImageView+Extension.swift in Sources */,
@@ -603,6 +679,7 @@
 		};
 		8261FA8D29A6717C001638C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FCB104749FAAA7B31BDD3A1C /* Pods-CoppelMovies.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -634,6 +711,7 @@
 		};
 		8261FA8E29A6717C001638C8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 223B28AA0F8D4B6012E70AD7 /* Pods-CoppelMovies.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
