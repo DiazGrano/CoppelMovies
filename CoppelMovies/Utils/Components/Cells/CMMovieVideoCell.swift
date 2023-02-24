@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import youtube_ios_player_helper
 
 
 class CMMovieVideoCell: UICollectionViewCell {
@@ -16,15 +17,18 @@ class CMMovieVideoCell: UICollectionViewCell {
     lazy var containerView: UIView = {
        let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .green
         return view
     }()
     
+    lazy var videoView: YTPlayerView = {
+       let video = YTPlayerView()
+        video.translatesAutoresizingMaskIntoConstraints = false
+        
+        return video
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
-        
-        self.contentView.backgroundColor = .cmDarkGreenCell
         self.contentView.layer.cornerRadius = 20
         self.contentView.clipsToBounds = true
         
@@ -39,6 +43,7 @@ class CMMovieVideoCell: UICollectionViewCell {
     
     func setUI() {
         self.contentView.addSubview(containerView)
+        containerView.addSubview(videoView)
     }
     
     func setConstraints() {
@@ -47,11 +52,16 @@ class CMMovieVideoCell: UICollectionViewCell {
             containerView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
             containerView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
             containerView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
+            
+            videoView.topAnchor.constraint(equalTo: containerView.topAnchor),
+            videoView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            videoView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            videoView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
         ])
     }
     
     
     func setData(videoKey: String) {
-        
+        videoView.load(withVideoId: videoKey)
     }
 }
