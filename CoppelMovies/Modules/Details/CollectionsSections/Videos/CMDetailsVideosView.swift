@@ -82,7 +82,7 @@ class CMDetailsVideosView: UIView {
             videosCollection.topAnchor.constraint(equalTo: videosTitleLabel.bottomAnchor, constant: .dimen10),
             videosCollection.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
             videosCollection.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-            videosCollection.heightAnchor.constraint(equalToConstant: 99),
+            videosCollection.heightAnchor.constraint(equalToConstant: 180),
             videosCollection.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
         ])
     }
@@ -100,7 +100,7 @@ extension CMDetailsVideosView: UICollectionViewDelegate {
 
 extension CMDetailsVideosView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 176, height: 99)
+        return CGSize(width: 320, height: 180)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
