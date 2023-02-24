@@ -24,7 +24,7 @@ class CMDetailsProductionCompaniesVew: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Production companies"
-        label.font = .systemFont(ofSize: 16, weight: .bold)
+        label.font = .systemFont(ofSize: 14, weight: .bold)
         label.textColor = .cmGreen
         
         return label

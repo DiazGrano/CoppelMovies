@@ -25,7 +25,7 @@ class CMDetailsGenresView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Genres"
-        label.font = .systemFont(ofSize: 16, weight: .bold)
+        label.font = .systemFont(ofSize: 14, weight: .bold)
         label.textColor = .cmGreen
         
         return label
