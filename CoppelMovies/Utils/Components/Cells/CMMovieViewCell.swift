@@ -9,9 +9,15 @@ import Foundation
 import UIKit
 
 
+protocol CMMovieViewCellProtocol: AnyObject {
+    func favoriteCellChanged()
+}
+
+
 class CMMovieViewCell: UICollectionViewCell {
     static let identifier = "CMMovieViewCell"
-    private var isFavorite: Bool = false
+    weak var delegate: CMMovieViewCellProtocol?
+    private var cellData: CMCatalogCellModel?
     
     
     lazy var containerView: UIView = {
@@ -24,9 +30,10 @@ class CMMovieViewCell: UICollectionViewCell {
        let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
-        imageView.backgroundColor = .purple
+        imageView.backgroundColor = .cmDarkGreen
         imageView.layer.cornerRadius = 20
         imageView.isUserInteractionEnabled = true
+        imageView.clipsToBounds = true
         
         return imageView
     }()
@@ -176,16 +183,22 @@ class CMMovieViewCell: UICollectionViewCell {
     }
     
     
-    func setData(movieModel: CMCatalogEntity) {
+    func setData(movieModel: CMCatalogCellModel, delegate: CMMovieViewCellProtocol?) {
+        self.delegate = delegate
+        cellData = movieModel
         titleLabel.text = movieModel.title
         releaseDateLabel.text = movieModel.releaseDate
-        ratingLabel.text = movieModel.rating
-        descriptionLabel.text = movieModel.description
+        ratingLabel.text = String(movieModel.voteAverage ?? 0.0)
+        descriptionLabel.text = movieModel.overview
+        movieImage.loadImage(url: (CMImageConfig.shared.baseURL + CMImageConfig.shared.getImageSize(type: .poster) + (movieModel.posterPath ?? "")))
+        
+        CMCoreDataManager.shared.getFavoriteStatus(id: movieModel.id ?? 0) { status in
+            self.favoriteButton.setFavorite(status: status)
+        }
     }
     
     
     func setFavorite(status: Bool) {
-        self.isFavorite = status
         self.favoriteButton.setFavorite(status: status)
     }
 }
@@ -193,6 +206,18 @@ class CMMovieViewCell: UICollectionViewCell {
 
 extension CMMovieViewCell: CMFavoriteButtonProtocol {
     func favoriteButtonTriggered(status: Bool) {
-        print("FAVORITE BUTTON TRIGGERED: \(status)")
+        guard let nonNilCellData = cellData else {
+            return
+        }
+        
+        if status {
+            CMCoreDataManager.shared.addFavorite(data: nonNilCellData) { [weak self] in
+                self?.delegate?.favoriteCellChanged()
+            }
+        } else {
+            CMCoreDataManager.shared.deleteFavorite(id: nonNilCellData.id ?? 0) { [weak self] in
+                self?.delegate?.favoriteCellChanged()
+            }
+        }
     }
 }
