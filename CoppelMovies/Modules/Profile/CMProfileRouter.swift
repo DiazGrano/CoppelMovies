@@ -9,13 +9,13 @@ import Foundation
 import UIKit
 
 protocol CMProfileRouterProtocol: AnyObject {
-    static func create() -> UIViewController
+    static func create(username: String) -> UIViewController
     
     func navigateToDetails(movieID: Int, controller: UIViewController)
 }
 
 class CMProfileRouter: CMProfileRouterProtocol {
-    static func create() -> UIViewController {
+    static func create(username: String) -> UIViewController {
         let presenter = CMProfilePresenter()
         let view = CMProfileView()
         let interactor = CMProfileInteractor()
@@ -26,6 +26,7 @@ class CMProfileRouter: CMProfileRouterProtocol {
         presenter.router = router
         
         view.presenter = presenter
+        view.username = username
         
         interactor.presenter = presenter
         

@@ -15,8 +15,8 @@ protocol CMProfileViewProtocol: AnyObject {
 
 class CMProfileView: UIViewController, CMProfileViewProtocol {
     var presenter: CMProfilePresenterProtocol?
-    var catalogData: [CMCatalogEntity] = []
-    
+    var favoritesData: [CMCatalogCellModel] = []
+    var username: String = ""
     
     lazy var containerView: UIView = {
        let view = UIView()
@@ -45,7 +45,7 @@ class CMProfileView: UIViewController, CMProfileViewProtocol {
     lazy var profileNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "@luisgrano"
+        label.text = "@\(username)"
         label.font = .systemFont(ofSize: 12, weight: .medium)
         label.textColor = .cmGreen
         
@@ -81,40 +81,12 @@ class CMProfileView: UIViewController, CMProfileViewProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = .cmDarkGreen
-        
-        catalogData = [CMCatalogEntity(image: nil,
-                                        title: "Pepe",
-                                        releaseDate: "jun 17, 2021",
-                                        rating: "10",
-                                        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sagittis risus quis neque dictum, ac consectetur ex tincidunt. Donec maximus nec arcu quis interdum."),
-                       CMCatalogEntity(image: nil,
-                                        title: "Pepe",
-                                        releaseDate: "jun 17, 2021",
-                                        rating: "10",
-                                        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sagittis risus quis neque dictum, ac consectetur ex tincidunt. Donec maximus nec arcu quis interdum."),
-                       CMCatalogEntity(image: nil,
-                                        title: "Pepe",
-                                        releaseDate: "jun 17, 2021",
-                                        rating: "10",
-                                        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sagittis risus quis neque dictum, ac consectetur ex tincidunt. Donec maximus nec arcu quis interdum."),
-                       CMCatalogEntity(image: nil,
-                                        title: "Pepe",
-                                        releaseDate: "jun 17, 2021",
-                                        rating: "10",
-                                        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sagittis risus quis neque dictum, ac consectetur ex tincidunt. Donec maximus nec arcu quis interdum."),
-                       CMCatalogEntity(image: nil,
-                                        title: "Pepe",
-                                        releaseDate: "jun 17, 2021",
-                                        rating: "10",
-                                        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sagittis risus quis neque dictum, ac consectetur ex tincidunt. Donec maximus nec arcu quis interdum.")]
-        
-        
+
         setUI()
         setConstraints()
         
-        favoritesCollection.reloadData()
+        self.getFavorites()
     }
     
     
@@ -159,6 +131,15 @@ class CMProfileView: UIViewController, CMProfileViewProtocol {
             favoritesCollection.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
         ])
     }
+    
+    
+    private func getFavorites() {
+       
+        CMCoreDataManager.shared.getAllFavoritesCellData { [weak self] favoritesData in
+            self?.favoritesData = favoritesData
+            self?.favoritesCollection.reloadData()
+        }
+    }
 }
 
 
@@ -166,7 +147,7 @@ class CMProfileView: UIViewController, CMProfileViewProtocol {
 
 extension CMProfileView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.presenter?.requestDetails(movieID: catalogData[indexPath.row].id ?? 0, controller: self)
+        self.presenter?.requestDetails(movieID: favoritesData[indexPath.row].id ?? 0, controller: self)
     }
 }
 
@@ -185,14 +166,20 @@ extension CMProfileView: UICollectionViewDelegateFlowLayout {
 extension CMProfileView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return catalogData.count
+        return favoritesData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CMMovieViewCell.identifier, for: indexPath) as? CMMovieViewCell
-        cell?.setData(movieModel: catalogData[indexPath.row])
+        cell?.setData(movieModel: favoritesData[indexPath.row], delegate: self)
         
         return cell ?? UICollectionViewCell()
     }
 }
 
+
+extension CMProfileView: CMMovieViewCellProtocol {
+    func favoriteCellChanged() {
+        getFavorites()
+    }
+}
