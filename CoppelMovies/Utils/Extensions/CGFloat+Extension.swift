@@ -20,4 +20,5 @@ extension CGFloat {
     static let dimen5 = (5.0 * CGFloat.multiplier)
     
     static let imageSize60 = (60.0 * CGFloat.multiplier)
+    static let imageSize150 = (150.0 * CGFloat.multiplier)
 }
