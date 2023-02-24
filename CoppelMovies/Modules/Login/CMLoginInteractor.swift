@@ -16,30 +16,55 @@ class CMLoginInteractor: CMLoginInteractorProtocol {
     weak var presenter: CMLoginPresenterProtocol?
     
     func postLogin(username: String, credential: String) {
-        CMAPIServicesManager.shared.getToken { [weak self] token in
-            let request = CMLoginRequest(username: username,
-                                          password: credential,
-                                          request_token: token)
-            let url = (CMAPIServicesURLBaseEnum.movie3.rawValue + CMAPIServicesURLPrefixEnum.auth.rawValue + CMAPIServicesURLEndpointEnum.login.rawValue)
-            
+        CMAPIServicesManager.shared.getToken(forceNew: true) { [weak self] token in
+            self?.login(username: username, credential: credential, token: token)
+        } failure: { [weak self] error in
+            self?.presenter?.responseFailure(message: error)
+        }
+    }
+    
+    private func login(username: String, credential: String, token: String) {
+        let request = CMLoginRequest(username: username,
+                                      password: credential,
+                                      request_token: token)
+        let url = (CMAPIServicesURLBaseEnum.movie3.rawValue + CMAPIServicesURLPrefixEnum.auth.rawValue + CMAPIServicesURLEndpointEnum.login.rawValue)
+        
+        CMAPIServicesManager.shared.request(url: url,
+                                  method: .post,
+                                  body: request,
+                                  responseType: CMLoginResponse.self) { [weak self] response in
+            guard response.success == true else {
+                self?.presenter?.responseFailure(message: response.status_message ?? "")
+                return
+            }
+            self?.createSession(token: token)
+        } failure: { [weak self] error in
+            self?.presenter?.responseFailure(message: error)
+        }
+    }
+    
+    private func createSession(token: String) {
+        let request = CMLoginSessionRequest(request_token: token)
+        
+        let url = (CMAPIServicesURLBaseEnum.movie3.rawValue + CMAPIServicesURLPrefixEnum.auth.rawValue + CMAPIServicesURLEndpointEnum.session.rawValue)
+        
+        CMAPIServicesManager.shared.request(url: url,
+                                  method: .post,
+                                  body: request,
+                                  responseType: CMLoginSessionResponse.self) { [weak self] response in
+            guard response.success == true, let sessionID = response.session_id else {
+                self?.presenter?.responseFailure(message: response.status_message ?? "")
+                return
+            }
+            CMAPIServicesManager.shared.sessionID = sessionID
             self?.getConfig {
-                CMAPIServicesManager.shared.request(url: url,
-                                          method: .post,
-                                          body: request,
-                                          responseType: CMLoginResponse.self) { [weak self] response in
-                    guard response.success == true else {
-                        self?.presenter?.responseFailure(message: response.status_message ?? "")
-                        return
-                    }
-                    self?.presenter?.responseLoginSuccess(username: username)
-                } failure: { [weak self] error in
-                    self?.presenter?.responseFailure(message: error)
-                }
+                self?.presenter?.responseLoginSuccess()
             }
         } failure: { [weak self] error in
             self?.presenter?.responseFailure(message: error)
         }
     }
+    
     
     
     private func getConfig(completion: @escaping (() -> ())) {

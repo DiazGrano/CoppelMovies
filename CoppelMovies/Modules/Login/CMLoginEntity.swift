@@ -32,3 +32,14 @@ struct CMConfigResponse: Codable {
         var profile_sizes: [String]?
     }
 }
+
+
+struct CMLoginSessionRequest: Codable {
+    var request_token: String
+}
+
+struct CMLoginSessionResponse: Codable {
+    var success: Bool?
+    var session_id: String?
+    var status_message: String?
+}
