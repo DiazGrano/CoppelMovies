@@ -13,6 +13,7 @@ class CMAPIServicesManager {
     private let apiKey = "6aa86200203cd4c8453548b98506b2f7"
     private var tokenExpiration: Double = 0
     private var token = ""
+    var sessionID = ""
     
     
     func request<response: Decodable>(url: String,
@@ -81,14 +82,18 @@ class CMAPIServicesManager {
         task.resume()
     }
     
-    public func getToken(success: @escaping (String) -> (),
+    public func getToken(forceNew: Bool = false,
+                         success: @escaping (String) -> (),
                          failure: @escaping (String) -> ()) {
-        guard !checkValidToken() else {
-            DispatchQueue.main.async {
-                success(self.token)
+        if !forceNew {
+            guard !checkValidToken() else {
+                DispatchQueue.main.async {
+                    success(self.token)
+                }
+                return
             }
-            return
         }
+        
         
         let tokenURL = (CMAPIServicesURLBaseEnum.movie3.rawValue + CMAPIServicesURLPrefixEnum.auth.rawValue + CMAPIServicesURLEndpointEnum.token.rawValue)
         
