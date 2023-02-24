@@ -18,21 +18,25 @@ class CMCatalogInteractor: CMCatalogInteractorProtocol {
     weak var presenter: CMCatalogPresenterProtocol?
     
     func deleteLogout() {
-        self.presenter?.responseLogout()
+        let request = CMCatalogLogoutRequest(session_id: CMAPIServicesManager.shared.sessionID)
+        
+        let url = (CMAPIServicesURLBaseEnum.movie3.rawValue + CMAPIServicesURLPrefixEnum.auth.rawValue + CMAPIServicesURLEndpointEnum.logout.rawValue)
+        
+        CMAPIServicesManager.shared.request(url: url, method: .delete, body: request, responseType: CMCatalogLogoutResponse.self) { [weak self] _ in
+            self?.presenter?.responseLogout()
+        } failure: { [weak self] _ in
+            self?.presenter?.responseLogout()
+        }
     }
     
     
     func getMovies(page: Int, endpoint: String) {
-        CMAPIServicesManager.shared.getToken { token in
-            let url = (CMAPIServicesURLBaseEnum.movie3.rawValue + CMAPIServicesURLPrefixEnum.movie.rawValue + endpoint)
-            
-            let finalURL = CMAPIServicesManager.shared.appendToURLStr(url: url, queryItems: ["page":"\(page)"])
-            
-            CMAPIServicesManager.shared.request(url: finalURL, method: .get, body: nil, responseType: CMCatalogResponse.self) { [weak self] response in
-                self?.presenter?.responseMovies(response: response)
-            } failure: { [weak self] error in
-                self?.presenter?.responseFailure(error: error)
-            }
+        let url = (CMAPIServicesURLBaseEnum.movie3.rawValue + CMAPIServicesURLPrefixEnum.movie.rawValue + endpoint)
+        
+        let finalURL = CMAPIServicesManager.shared.appendToURLStr(url: url, queryItems: ["page":"\(page)"])
+        
+        CMAPIServicesManager.shared.request(url: finalURL, method: .get, body: nil, responseType: CMCatalogResponse.self) { [weak self] response in
+            self?.presenter?.responseMovies(response: response)
         } failure: { [weak self] error in
             self?.presenter?.responseFailure(error: error)
         }

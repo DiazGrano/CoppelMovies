@@ -68,3 +68,12 @@ struct CMCatalogCellModel {
         self.voteAverage = voteAverage
     }
 }
+
+
+struct CMCatalogLogoutRequest: Codable {
+    var session_id: String?
+}
+
+struct CMCatalogLogoutResponse: Codable {
+    var success: Bool?
+}

@@ -121,7 +121,7 @@ class CMCatalogView: UIViewController {
         let alert = UIAlertController(title: "What do you want to do?", message: nil, preferredStyle: .actionSheet)
         
         alert.addAction(UIAlertAction(title: "View Profile", style: .default, handler: { _ in
-            self.presenter?.requestProfile(controller: self)
+            self.presenter?.requestProfile(controller: self, delegate: self)
         }))
         
         alert.addAction(UIAlertAction(title: "Log out", style: .destructive, handler: { _ in
@@ -211,7 +211,9 @@ extension CMCatalogView: CMCatalogViewProtocol {
 
 extension CMCatalogView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.presenter?.requestDetails(movieID: catalogData[currentCategory].movies[indexPath.row].id ?? 0, controller: self)
+        self.presenter?.requestDetails(movieID: catalogData[currentCategory].movies[indexPath.row].id ?? 0,
+                                       controller: self,
+                                       delegate: self)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -259,5 +261,20 @@ extension CMCatalogView: UICollectionViewDataSource {
 extension CMCatalogView: CMMovieViewCellProtocol {
     func favoriteCellChanged() {
         getFavorites()
+    }
+}
+
+extension CMCatalogView: CMDetailsFavoriteProtocol {
+    func favoriteMovieDetailsChanged() {
+        getFavorites()
+        catalogCollection.reloadData()
+    }
+}
+
+
+extension CMCatalogView: CMProfileFavoriteProtocol {
+    func profileFavoritesMoviesChanged() {
+        getFavorites()
+        catalogCollection.reloadData()
     }
 }

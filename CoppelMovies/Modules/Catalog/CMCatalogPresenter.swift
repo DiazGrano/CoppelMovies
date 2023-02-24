@@ -19,9 +19,9 @@ protocol CMCatalogPresenterProtocol: AnyObject {
     
     func responseFailure(error: String)
     
-    func requestProfile(controller: UIViewController)
+    func requestProfile(controller: UIViewController, delegate: CMProfileFavoriteProtocol)
     
-    func requestDetails(movieID: Int, controller: UIViewController)
+    func requestDetails(movieID: Int, controller: UIViewController, delegate: CMDetailsFavoriteProtocol)
     
     func requestLogout()
     func responseLogout()
@@ -32,8 +32,8 @@ class CMCatalogPresenter: CMCatalogPresenterProtocol {
     var router: CMCatalogRouterProtocol?
     var interactor: CMCatalogInteractorProtocol?
 
-    func requestProfile(controller: UIViewController) {
-        self.router?.navigateToProfile(controller: controller)
+    func requestProfile(controller: UIViewController, delegate: CMProfileFavoriteProtocol) {
+        self.router?.navigateToProfile(controller: controller, delegate: delegate)
     }
     
     func requestMovies(page: Int, endpoint: String) {
@@ -46,15 +46,17 @@ class CMCatalogPresenter: CMCatalogPresenterProtocol {
         self.view?.notifyMovies(response: response)
     }
     
-    func requestDetails(movieID: Int, controller: UIViewController) {
-        self.router?.navigateToDetails(movieID: movieID, controller: controller)
+    func requestDetails(movieID: Int, controller: UIViewController, delegate: CMDetailsFavoriteProtocol) {
+        self.router?.navigateToDetails(movieID: movieID, controller: controller, delegate: delegate)
     }
     
     func requestLogout() {
+        CMLoader.show()
         self.interactor?.deleteLogout()
     }
     
     func responseLogout() {
+        CMLoader.hide()
         self.router?.navigateBack(navigation: self.view?.notifyGetNavigation())
     }
     

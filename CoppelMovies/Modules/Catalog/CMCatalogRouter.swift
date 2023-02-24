@@ -9,11 +9,11 @@ import Foundation
 import UIKit
 
 protocol CMCatalogRouterProtocol: AnyObject {
-    static func create(username: String) -> UIViewController
+    static func create() -> UIViewController
     
-    func navigateToProfile(controller: UIViewController)
+    func navigateToProfile(controller: UIViewController, delegate: CMProfileFavoriteProtocol)
     
-    func navigateToDetails(movieID: Int, controller: UIViewController)
+    func navigateToDetails(movieID: Int, controller: UIViewController, delegate: CMDetailsFavoriteProtocol)
     
     func navigateBack(navigation: UINavigationController?)
 }
@@ -21,7 +21,7 @@ protocol CMCatalogRouterProtocol: AnyObject {
 class CMCatalogRouter: CMCatalogRouterProtocol {
     private var username: String = ""
     
-    static func create(username: String) -> UIViewController {
+    static func create() -> UIViewController {
         let presenter = CMCatalogPresenter()
         let view = CMCatalogView()
         let interactor = CMCatalogInteractor()
@@ -35,18 +35,16 @@ class CMCatalogRouter: CMCatalogRouterProtocol {
         
         interactor.presenter = presenter
         
-        router.username = username
-        
         return view
     }
     
-    func navigateToProfile(controller: UIViewController) {
-        controller.present(CMProfileRouter.create(username: self.username), animated: true)
+    func navigateToProfile(controller: UIViewController, delegate: CMProfileFavoriteProtocol) {
+        controller.present(CMProfileRouter.create(delegate: delegate), animated: true)
     }
     
     
-    func navigateToDetails(movieID: Int, controller: UIViewController) {
-        controller.present(CMDetailsRouter.create(movieID: movieID), animated: true)
+    func navigateToDetails(movieID: Int, controller: UIViewController, delegate: CMDetailsFavoriteProtocol) {
+        controller.present(CMDetailsRouter.create(movieID: movieID, delegate: delegate), animated: true)
     }
     
     func navigateBack(navigation: UINavigationController?){
