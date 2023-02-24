@@ -9,11 +9,11 @@ import Foundation
 import UIKit
 
 protocol CMDetailsRouterProtocol: AnyObject {
-    static func create(movieID: Int) -> UIViewController
+    static func create(movieID: Int, delegate: CMDetailsFavoriteProtocol) -> UIViewController
 }
 
 class CMDetailsRouter: CMDetailsRouterProtocol {
-    static func create(movieID: Int) -> UIViewController {
+    static func create(movieID: Int, delegate: CMDetailsFavoriteProtocol) -> UIViewController {
         let presenter = CMDetailsPresenter()
         let view = CMDetailsView()
         let interactor = CMDetailsInteractor()
@@ -25,6 +25,7 @@ class CMDetailsRouter: CMDetailsRouterProtocol {
         
         view.presenter = presenter
         view.movieID = movieID
+        view.delegate = delegate
         
         interactor.presenter = presenter
         

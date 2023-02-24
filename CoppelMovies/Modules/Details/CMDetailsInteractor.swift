@@ -16,16 +16,25 @@ class CMDetailsInteractor: CMDetailsInteractorProtocol {
     weak var presenter: CMDetailsPresenterProtocol?
     
     func getMovieDetails(id: Int) {
-        CMAPIServicesManager.shared.getToken { token in
-            let url = (CMAPIServicesURLBaseEnum.movie3.rawValue + CMAPIServicesURLPrefixEnum.movie.rawValue + "/\(id)")
-    
-            CMAPIServicesManager.shared.request(url: url, method: .get, body: nil, responseType: CMDetailsResponse.self) { [weak self] response in
-                self?.presenter?.responseMovieDetails(response: response)
-            } failure: { [weak self] error in
-                self?.presenter?.responseFailure(message: error)
-            }
+        let url = (CMAPIServicesURLBaseEnum.movie3.rawValue + CMAPIServicesURLPrefixEnum.movie.rawValue + "/\(id)")
+
+        CMAPIServicesManager.shared.request(url: url, method: .get, body: nil, responseType: CMDetailsResponse.self) { [weak self] response in
+            self?.getMovieVideos(id: id, completion: { responseVideos in
+                self?.presenter?.responseMovieDetails(response: response, videos: responseVideos)
+            })
         } failure: { [weak self] error in
             self?.presenter?.responseFailure(message: error)
+        }
+    }
+    
+    
+    private func getMovieVideos(id: Int, completion: @escaping ((CMDetailsVideosResponse?) -> ())) {
+        let url = (CMAPIServicesURLBaseEnum.movie3.rawValue + CMAPIServicesURLPrefixEnum.movie.rawValue + "/\(id)" + CMAPIServicesURLEndpointEnum.videos.rawValue)
+        
+        CMAPIServicesManager.shared.request(url: url, method: .get, body: nil, responseType: CMDetailsVideosResponse.self) { response in
+            completion(response)
+        } failure: { error in
+            completion(nil)
         }
     }
 }

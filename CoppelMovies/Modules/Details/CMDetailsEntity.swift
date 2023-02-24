@@ -17,6 +17,8 @@ struct CMDetailsResponse: Codable {
     var status: String?
     var title: String?
     var vote_average: Float?
+    var budget: Int?
+    var revenue: Int?
     
     var genres: [Genre]?
     struct Genre: Codable {
@@ -27,5 +29,14 @@ struct CMDetailsResponse: Codable {
     struct ProductionCompany: Codable {
         var name: String?
         var logo_path: String?
+    }
+}
+
+struct CMDetailsVideosResponse: Codable {
+    var id: Int?
+    var results: [Result]?
+    struct Result: Codable {
+        var key: String?
+        var site: String?
     }
 }

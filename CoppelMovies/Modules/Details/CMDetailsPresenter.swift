@@ -15,7 +15,7 @@ protocol CMDetailsPresenterProtocol: AnyObject {
     var interactor: CMDetailsInteractorProtocol? { get set }
     
     func requestMovieDetails(id: Int)
-    func responseMovieDetails(response: CMDetailsResponse)
+    func responseMovieDetails(response: CMDetailsResponse, videos: CMDetailsVideosResponse?)
     
     func responseFailure(message: String)
 }
@@ -31,9 +31,9 @@ class CMDetailsPresenter: CMDetailsPresenterProtocol {
         self.interactor?.getMovieDetails(id: id)
     }
     
-    func responseMovieDetails(response: CMDetailsResponse) {
+    func responseMovieDetails(response: CMDetailsResponse, videos: CMDetailsVideosResponse?) {
         CMLoader.hide()
-        self.view?.notifyMovieDetails(response: response)
+        self.view?.notifyMovieDetails(response: response, videos: videos)
     }
     
     func responseFailure(message: String) {

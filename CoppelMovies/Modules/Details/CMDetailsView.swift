@@ -8,15 +8,21 @@
 import Foundation
 import UIKit
 
+protocol CMDetailsFavoriteProtocol: AnyObject {
+    func favoriteMovieDetailsChanged()
+}
+
 
 protocol CMDetailsViewProtocol: AnyObject {
     var presenter: CMDetailsPresenterProtocol? { get set }
     
-    func notifyMovieDetails(response: CMDetailsResponse)
+    func notifyMovieDetails(response: CMDetailsResponse, videos: CMDetailsVideosResponse?)
 }
 
 class CMDetailsView: UIViewController {
+    weak var delegate: CMDetailsFavoriteProtocol?
     var presenter: CMDetailsPresenterProtocol?
+    private var movieDetailsData: CMCatalogCellModel?
     var movieID: Int = 0
     
     lazy var containerScrollView: UIScrollView = {
@@ -44,7 +50,7 @@ class CMDetailsView: UIViewController {
     
     
     lazy var favoriteButton: CMFavoriteButtonView = {
-       let button = CMFavoriteButtonView(delegate: nil)
+       let button = CMFavoriteButtonView(delegate: self)
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
@@ -58,7 +64,6 @@ class CMDetailsView: UIViewController {
         label.minimumScaleFactor = 0.5
         label.textColor = .cmGreen
         label.font = .systemFont(ofSize: 20, weight: .semibold)
-        label.text = "El hombre que araña"
         
         return label
     }()
@@ -102,7 +107,6 @@ class CMDetailsView: UIViewController {
         return view
     }()
     
-    
     lazy var descriptionLabel: UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -112,8 +116,50 @@ class CMDetailsView: UIViewController {
         return label
     }()
     
+    lazy var budgetTitleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Budget"
+        label.font = .systemFont(ofSize: 14, weight: .bold)
+        label.textColor = .cmGreen
+        
+        return label
+    }()
+    
+    lazy var budgetLabel: UILabel = {
+       let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5
+        label.textColor = .white
+        label.font = .systemFont(ofSize: 14)
+        return label
+    }()
+    
+    lazy var revenueTitleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Revenue"
+        label.font = .systemFont(ofSize: 14, weight: .bold)
+        label.textColor = .cmGreen
+        
+        return label
+    }()
+    
+    lazy var revenueLabel: UILabel = {
+       let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5
+        label.textColor = .white
+        label.font = .systemFont(ofSize: 14)
+        return label
+    }()
+    
     lazy var videosView: CMDetailsVideosView = {
-        let view = CMDetailsVideosView(videoData: ["", "", "", "", "", "", "", ""])
+        let view = CMDetailsVideosView(videoData: [])
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
@@ -143,15 +189,22 @@ class CMDetailsView: UIViewController {
     
     private func setUI(){
         self.view.addSubview(containerScrollView)
+        
         containerScrollView.addSubview(contentView)
+        
         contentView.addSubview(movieImage)
         movieImage.addSubview(favoriteButton)
+        
         contentView.addSubview(titleLabel)
         contentView.addSubview(releaseDateLabel)
         contentView.addSubview(ratingImage)
         contentView.addSubview(ratingLabel)
-        contentView.addSubview(genresView)
         contentView.addSubview(descriptionLabel)
+        contentView.addSubview(budgetTitleLabel)
+        contentView.addSubview(budgetLabel)
+        contentView.addSubview(revenueTitleLabel)
+        contentView.addSubview(revenueLabel)
+        contentView.addSubview(genresView)
         contentView.addSubview(videosView)
         contentView.addSubview(productionCompaniesView)
     }
@@ -198,7 +251,23 @@ class CMDetailsView: UIViewController {
             descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             
-            genresView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: .dimen20),
+            budgetTitleLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: .dimen20),
+            budgetTitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            budgetTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            
+            budgetLabel.topAnchor.constraint(equalTo: budgetTitleLabel.bottomAnchor, constant: .dimen10),
+            budgetLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            budgetLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            
+            revenueTitleLabel.topAnchor.constraint(equalTo: budgetLabel.bottomAnchor, constant: .dimen20),
+            revenueTitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            revenueTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            
+            revenueLabel.topAnchor.constraint(equalTo: revenueTitleLabel.bottomAnchor, constant: .dimen10),
+            revenueLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            revenueLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            
+            genresView.topAnchor.constraint(equalTo: revenueLabel.bottomAnchor, constant: .dimen20),
             genresView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             genresView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             
@@ -216,16 +285,62 @@ class CMDetailsView: UIViewController {
 
 
 extension CMDetailsView: CMDetailsViewProtocol {
-    func notifyMovieDetails(response: CMDetailsResponse) {
+    func notifyMovieDetails(response: CMDetailsResponse, videos: CMDetailsVideosResponse?) {
+        CMCoreDataManager.shared.getFavoriteStatus(id: response.id ?? 0) { status in
+            self.favoriteButton.setFavorite(status: status)
+        }
+        
+        movieDetailsData = CMCatalogCellModel(posterPath: response.poster_path ?? "",
+                                              overview: response.overview ?? "",
+                                              releaseDate: response.release_date ?? "",
+                                              genreIDs: nil,
+                                              id: response.id ?? 0,
+                                              title: response.title ?? "",
+                                              voteAverage: response.vote_average ?? 0.0)
+        
         movieImage.loadImage(url: (CMImageConfig.shared.baseURL + CMImageConfig.shared.getImageSize(type: .poster, size: .largest) + (response.poster_path ?? "")))
         titleLabel.text = response.title ?? ""
         releaseDateLabel.text = response.release_date ?? ""
         ratingLabel.text = String(response.vote_average ?? 0.0)
         descriptionLabel.text = response.overview ?? ""
         
+        
+        budgetLabel.text = (response.budget ?? 0).getFormattedCurrency()
+        revenueLabel.text = (response.revenue ?? 0).getFormattedCurrency()
+        
+        
+        
         let genres = response.genres?.compactMap({ String($0.name ?? "") }) ?? []
         genresView.setGenres(data: genres)
         
         productionCompaniesView.setProductionCompanies(data: response.production_companies ?? [])
+        
+        guard let nonNilVideos = videos?.results, !nonNilVideos.isEmpty else {
+            return
+        }
+        
+        let youtubeVideos = nonNilVideos.filter({ $0.site == CMVideoSitesEnum.youtube.rawValue })
+        
+        let videoKeys = youtubeVideos.compactMap({ String($0.key ?? "") })
+        videosView.setVideos(data: videoKeys)
+    }
+}
+
+
+extension CMDetailsView: CMFavoriteButtonProtocol {
+    func favoriteButtonTriggered(status: Bool) {
+        guard let nonNillMovieData = movieDetailsData else {
+            return
+        }
+        
+        if status {
+            CMCoreDataManager.shared.addFavorite(data: nonNillMovieData) { [weak self] in
+                self?.delegate?.favoriteMovieDetailsChanged()
+            }
+        } else {
+            CMCoreDataManager.shared.deleteFavorite(id: nonNillMovieData.id ?? 0) { [weak self] in
+                self?.delegate?.favoriteMovieDetailsChanged()
+            }
+        }
     }
 }
