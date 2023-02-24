@@ -12,7 +12,7 @@ protocol CMLoginPresenterProtocol: AnyObject {
     var interactor: CMLoginInteractorProtocol? { get set }
     
     func requestLogin(username: String, credential: String)
-    func responseLoginSuccess()
+    func responseLoginSuccess(username: String)
     
     func responseFailure(message: String)
 }
@@ -24,15 +24,17 @@ class CMLoginPresenter: CMLoginPresenterProtocol {
     
     
     func requestLogin(username: String, credential: String) {
-        //self.interactor?.postLogin(username: username, credential: credential)
-        responseLoginSuccess()
+        CMLoader.show()
+        self.interactor?.postLogin(username: username, credential: credential)
     }
     
-    func responseLoginSuccess() {
-        self.router?.navigateToCatalog(navigation: self.view?.notifyGetNavigation())
+    func responseLoginSuccess(username: String) {
+        CMLoader.hide()
+        self.router?.navigateToCatalog(navigation: self.view?.notifyGetNavigation(), username: username)
     }
     
     func responseFailure(message: String) {
+        CMLoader.hide()
         self.view?.notifyError(message: message)
     }
 }

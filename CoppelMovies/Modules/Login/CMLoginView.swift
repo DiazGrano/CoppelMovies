@@ -82,6 +82,9 @@ class CMLoginView: UIViewController, CMLoginViewProtocol {
         
         setUI()
         setConstraints()
+        
+        usernameTextView.text = "luisdiaztest"
+        credentialTextView.text = "Hola_123"
     }
     
     
@@ -130,9 +133,17 @@ class CMLoginView: UIViewController, CMLoginViewProtocol {
     
     
     func loginButtonTriggered() {
+        credentialTextView.dropFirstResponder()
+        usernameTextView.dropFirstResponder()
+        
+        guard ((!usernameTextView.text.isEmpty && !credentialTextView.text.isEmpty) && loginButton.enabled) else {
+            return
+        }
+        
         loginErrorLabel.isHidden = true
         loginErrorLabel.text = ""
         loginButton.enabled = false
+        
         self.presenter?.requestLogin(username: usernameTextView.text, credential: credentialTextView.text)
     }
     
@@ -141,10 +152,8 @@ class CMLoginView: UIViewController, CMLoginViewProtocol {
     }
     
     func notifyError(message: String){
-        DispatchQueue.main.async {
-            self.loginErrorLabel.text = message
-            self.loginErrorLabel.isHidden = false
-        }
+        self.loginErrorLabel.text = message
+        self.loginErrorLabel.isHidden = false
     }
 }
 
@@ -158,7 +167,6 @@ extension CMLoginView: CMTextFieldProtocol {
         if usernameTextView.identifier == identifier {
             credentialTextView.makeFirstResponder()
         } else if credentialTextView.identifier == identifier {
-            credentialTextView.dropFirstResponder()
             loginButtonTriggered()
         }
     }

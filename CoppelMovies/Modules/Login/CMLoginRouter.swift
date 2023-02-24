@@ -11,7 +11,7 @@ import UIKit
 protocol CMLoginRouterProtocol: AnyObject {
     static func create() -> UIViewController
     
-    func navigateToCatalog(navigation: UINavigationController?)
+    func navigateToCatalog(navigation: UINavigationController?, username: String)
 }
 
 class CMLoginRouter: CMLoginRouterProtocol {
@@ -32,12 +32,12 @@ class CMLoginRouter: CMLoginRouterProtocol {
         return view
     }
     
-    func navigateToCatalog(navigation: UINavigationController?) {
+    func navigateToCatalog(navigation: UINavigationController?, username: String) {
         DispatchQueue.main.async {
             guard let nonNilNav = navigation else {
                 return
             }
-            nonNilNav.pushViewController(CMCatalogRouter.create(), animated: true)
+            nonNilNav.pushViewController(CMCatalogRouter.create(username: username), animated: true)
         }
     }
 }

@@ -6,3 +6,29 @@
 //
 
 import Foundation
+
+struct CMLoginRequest: Codable {
+    var username: String
+    var password: String
+    var request_token: String
+}
+
+struct CMLoginResponse: Codable {
+    var success: Bool?
+    var expires_at: String?
+    var request_token: String?
+    var status_message: String?
+}
+
+
+
+struct CMConfigResponse: Codable {
+    var images: ImagesData?
+    
+    struct ImagesData: Codable {
+        var secure_base_url: String?
+        var logo_sizes: [String]?
+        var poster_sizes: [String]?
+        var profile_sizes: [String]?
+    }
+}
