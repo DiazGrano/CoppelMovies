@@ -13,4 +13,6 @@ enum CMAPIServicesURLEndpointEnum: String {
     case token = "/token/new"
     case login = "/token/validate_with_login"
     case logout = "/session"
+    case videos = "/videos"
+    case session = "/session/new"
 }
