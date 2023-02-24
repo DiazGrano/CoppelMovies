@@ -34,6 +34,6 @@ class CMProfileRouter: CMProfileRouterProtocol {
     }
     
     func navigateToDetails(movieID: Int, controller: UIViewController) {
-        controller.present(CMDetailsRouter.create(), animated: true)
+        controller.present(CMDetailsRouter.create(movieID: movieID), animated: true)
     }
 }

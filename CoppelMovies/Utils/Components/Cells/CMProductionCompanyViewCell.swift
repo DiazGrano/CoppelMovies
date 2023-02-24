@@ -16,22 +16,34 @@ class CMProductionCompanyViewCell: UICollectionViewCell {
     lazy var containerView: UIView = {
        let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .cmLightGray
         return view
     }()
     
     lazy var companyLogoImage: UIImageView = {
        let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFill
-        imageView.backgroundColor = .orange
+        imageView.contentMode = .scaleAspectFit
         return imageView
+    }()
+    
+    lazy var companyNameLabel: UILabel = {
+       let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 2
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5
+        label.textColor = .black
+        label.isHidden = true
+        label.textAlignment = .center
+        label.font = .systemFont(ofSize: 14, weight: .bold)
+        return label
     }()
     
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
-        self.contentView.layer.cornerRadius = 50
         self.contentView.clipsToBounds = true
         
         setUI()
@@ -46,6 +58,7 @@ class CMProductionCompanyViewCell: UICollectionViewCell {
     func setUI() {
         self.contentView.addSubview(containerView)
         containerView.addSubview(companyLogoImage)
+        containerView.addSubview(companyNameLabel)
     }
     
     func setConstraints() {
@@ -55,15 +68,28 @@ class CMProductionCompanyViewCell: UICollectionViewCell {
             containerView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
             containerView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
             
-            companyLogoImage.topAnchor.constraint(equalTo: containerView.topAnchor),
-            companyLogoImage.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-            companyLogoImage.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-            companyLogoImage.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
+            companyLogoImage.topAnchor.constraint(equalTo: containerView.topAnchor, constant: .dimen20),
+            companyLogoImage.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: .dimen20),
+            companyLogoImage.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -.dimen20),
+            companyLogoImage.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -.dimen20),
+            
+            companyNameLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: .dimen20),
+            companyNameLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: .dimen20),
+            companyNameLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -.dimen20),
+            companyNameLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -.dimen20),
         ])
     }
     
     
-    func setData(logoPath: String) {
-        
+    func setData(productionCompany: CMDetailsResponse.ProductionCompany) {
+        self.contentView.layer.cornerRadius = (self.bounds.height/2.0)
+        guard let nonNilLogo = productionCompany.logo_path else {
+            companyNameLabel.text = productionCompany.name ?? ""
+            companyNameLabel.isHidden = false
+            companyLogoImage.isHidden = true
+            return
+        }
+        let url = (CMImageConfig.shared.baseURL + CMImageConfig.shared.getImageSize(type: .logo) + (nonNilLogo))
+        companyLogoImage.loadImage(url: url)
     }
 }

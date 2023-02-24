@@ -62,7 +62,7 @@ class CMCatalogView: UIViewController {
         collection.register(CMMovieViewCell.self, forCellWithReuseIdentifier: CMMovieViewCell.identifier)
         collection.backgroundColor = .clear
         collection.showsVerticalScrollIndicator = false
-        collection.bounces = false
+
         return collection
     }()
     

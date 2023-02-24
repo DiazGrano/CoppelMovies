@@ -11,10 +11,13 @@ import UIKit
 
 protocol CMDetailsViewProtocol: AnyObject {
     var presenter: CMDetailsPresenterProtocol? { get set }
+    
+    func notifyMovieDetails(response: CMDetailsResponse)
 }
 
-class CMDetailsView: UIViewController, CMDetailsViewProtocol {
+class CMDetailsView: UIViewController {
     var presenter: CMDetailsPresenterProtocol?
+    var movieID: Int = 0
     
     lazy var containerScrollView: UIScrollView = {
        let scroll = UIScrollView()
@@ -32,11 +35,10 @@ class CMDetailsView: UIViewController, CMDetailsViewProtocol {
     lazy var movieImage: UIImageView = {
        let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFill
-        imageView.backgroundColor = .purple
+        imageView.contentMode = .scaleAspectFit
         imageView.layer.cornerRadius = 20
         imageView.isUserInteractionEnabled = true
-        
+        imageView.clipsToBounds = true
         return imageView
     }()
     
@@ -70,7 +72,6 @@ class CMDetailsView: UIViewController, CMDetailsViewProtocol {
         label.minimumScaleFactor = 0.5
         label.textColor = .cmGreen
         label.font = .systemFont(ofSize: 12, weight: .semibold)
-        label.text = "jun 17, 2021"
         return label
     }()
     
@@ -90,13 +91,12 @@ class CMDetailsView: UIViewController, CMDetailsViewProtocol {
         label.numberOfLines = 1
         label.textColor = .cmGreen
         label.font = .systemFont(ofSize: 12, weight: .semibold)
-        label.text = "10.0"
         return label
     }()
     
     
     lazy var genresView: CMDetailsGenresView = {
-        let view = CMDetailsGenresView(genresData: ["Terror", "Comedy", "Love", "Family", "Sci-Fi", "Psichologic", "History", "Video games"])
+        let view = CMDetailsGenresView(genresData: [])
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
@@ -109,7 +109,6 @@ class CMDetailsView: UIViewController, CMDetailsViewProtocol {
         label.numberOfLines = 0
         label.textColor = .white
         label.font = .systemFont(ofSize: 14)
-        label.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed sapien id tellus condimentum consequat. Aenean cursus nec nulla id auctor. Aenean eget accumsan risus. Fusce eros purus, condimentum a pretium id, semper in dolor. Vivamus pellentesque elit lacinia finibus tristique. Nulla facilisi."
         return label
     }()
     
@@ -121,7 +120,7 @@ class CMDetailsView: UIViewController, CMDetailsViewProtocol {
     }()
     
     lazy var productionCompaniesView: CMDetailsProductionCompaniesVew = {
-        let view = CMDetailsProductionCompaniesVew(productionCompaniesData: ["", "", "", "", "", "", "", ""])
+        let view = CMDetailsProductionCompaniesVew(productionCompaniesData: [])
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
@@ -137,6 +136,8 @@ class CMDetailsView: UIViewController, CMDetailsViewProtocol {
         
         setUI()
         setConstraints()
+        
+        self.presenter?.requestMovieDetails(id: movieID)
     }
     
     
@@ -170,7 +171,7 @@ class CMDetailsView: UIViewController, CMDetailsViewProtocol {
 
             movieImage.topAnchor.constraint(equalTo: contentView.topAnchor),
             movieImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            movieImage.heightAnchor.constraint(equalToConstant: (UIScreen.main.bounds.height * 0.3)),
+            movieImage.heightAnchor.constraint(equalToConstant: (UIScreen.main.bounds.height * 0.5)),
             movieImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             
             favoriteButton.topAnchor.constraint(equalTo: movieImage.topAnchor),
@@ -210,5 +211,21 @@ class CMDetailsView: UIViewController, CMDetailsViewProtocol {
             productionCompaniesView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             productionCompaniesView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -.dimen40),
         ])
+    }
+}
+
+
+extension CMDetailsView: CMDetailsViewProtocol {
+    func notifyMovieDetails(response: CMDetailsResponse) {
+        movieImage.loadImage(url: (CMImageConfig.shared.baseURL + CMImageConfig.shared.getImageSize(type: .poster, size: .largest) + (response.poster_path ?? "")))
+        titleLabel.text = response.title ?? ""
+        releaseDateLabel.text = response.release_date ?? ""
+        ratingLabel.text = String(response.vote_average ?? 0.0)
+        descriptionLabel.text = response.overview ?? ""
+        
+        let genres = response.genres?.compactMap({ String($0.name ?? "") }) ?? []
+        genresView.setGenres(data: genres)
+        
+        productionCompaniesView.setProductionCompanies(data: response.production_companies ?? [])
     }
 }

@@ -10,7 +10,7 @@ import UIKit
 
 
 class CMDetailsProductionCompaniesVew: UIView {
-    var productionCompaniesData: [String] = []
+    var productionCompaniesData: [CMDetailsResponse.ProductionCompany] = []
     
     
     lazy var containerView: UIView = {
@@ -47,7 +47,7 @@ class CMDetailsProductionCompaniesVew: UIView {
     }()
     
     
-    init(productionCompaniesData: [String]) {
+    init(productionCompaniesData: [CMDetailsResponse.ProductionCompany]) {
         super.init(frame: .zero)
         self.productionCompaniesData = productionCompaniesData
         
@@ -88,7 +88,7 @@ class CMDetailsProductionCompaniesVew: UIView {
     }
     
     
-    func setProductionCompanies(data: [String]) {
+    func setProductionCompanies(data: [CMDetailsResponse.ProductionCompany]) {
         productionCompaniesData = data
         productionCompaniesCollection.reloadData()
     }
@@ -116,7 +116,7 @@ extension CMDetailsProductionCompaniesVew: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CMProductionCompanyViewCell.identifier, for: indexPath) as? CMProductionCompanyViewCell
-        cell?.setData(logoPath: productionCompaniesData[indexPath.row])
+        cell?.setData(productionCompany: productionCompaniesData[indexPath.row])
         
         return cell ?? UICollectionViewCell()
     }

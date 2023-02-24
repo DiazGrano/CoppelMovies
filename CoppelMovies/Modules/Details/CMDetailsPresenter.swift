@@ -13,6 +13,11 @@ protocol CMDetailsPresenterProtocol: AnyObject {
     var view: CMDetailsViewProtocol? { get set }
     var router: CMDetailsRouterProtocol? { get set }
     var interactor: CMDetailsInteractorProtocol? { get set }
+    
+    func requestMovieDetails(id: Int)
+    func responseMovieDetails(response: CMDetailsResponse)
+    
+    func responseFailure(message: String)
 }
 
 class CMDetailsPresenter: CMDetailsPresenterProtocol {
@@ -21,4 +26,17 @@ class CMDetailsPresenter: CMDetailsPresenterProtocol {
     var interactor: CMDetailsInteractorProtocol?
     
 
+    func requestMovieDetails(id: Int) {
+        CMLoader.show()
+        self.interactor?.getMovieDetails(id: id)
+    }
+    
+    func responseMovieDetails(response: CMDetailsResponse) {
+        CMLoader.hide()
+        self.view?.notifyMovieDetails(response: response)
+    }
+    
+    func responseFailure(message: String) {
+        CMLoader.hide()
+    }
 }
