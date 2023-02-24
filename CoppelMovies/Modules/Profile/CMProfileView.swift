@@ -11,12 +11,21 @@ import UIKit
 
 protocol CMProfileViewProtocol: AnyObject {
     var presenter: CMProfilePresenterProtocol? { get set }
+    
+    func notifyProfile(response: CMProfileResponse)
+    
+    func notifyGetViewController() -> UIViewController
 }
 
-class CMProfileView: UIViewController, CMProfileViewProtocol {
+protocol CMProfileFavoriteProtocol: AnyObject {
+    func profileFavoritesMoviesChanged()
+}
+
+
+class CMProfileView: UIViewController {
+    var delegate: CMProfileFavoriteProtocol?
     var presenter: CMProfilePresenterProtocol?
     var favoritesData: [CMCatalogCellModel] = []
-    var username: String = ""
     
     lazy var containerView: UIView = {
        let view = UIView()
@@ -35,17 +44,25 @@ class CMProfileView: UIViewController, CMProfileViewProtocol {
         return label
     }()
     
+    lazy var profileDataContainerView: UIView = {
+       let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
+    
     lazy var profilePictureImage: UIImageView = {
        let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = .blue
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         return imageView
     }()
     
     lazy var profileNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "@\(username)"
         label.font = .systemFont(ofSize: 12, weight: .medium)
         label.textColor = .cmGreen
         
@@ -58,6 +75,7 @@ class CMProfileView: UIViewController, CMProfileViewProtocol {
         label.text = "Favorite movies"
         label.font = .systemFont(ofSize: 14, weight: .semibold)
         label.textColor = .cmGreen
+        label.isHidden = true
         
         return label
     }()
@@ -86,15 +104,18 @@ class CMProfileView: UIViewController, CMProfileViewProtocol {
         setUI()
         setConstraints()
         
-        self.getFavorites()
+        self.presenter?.requestProfile()
     }
     
     
     private func setUI(){
         view.addSubview(containerView)
         containerView.addSubview(profileTitleLabel)
-        containerView.addSubview(profilePictureImage)
-        containerView.addSubview(profileNameLabel)
+        containerView.addSubview(profileDataContainerView)
+        
+        profileDataContainerView.addSubview(profilePictureImage)
+        profileDataContainerView.addSubview(profileNameLabel)
+        
         containerView.addSubview(favoriteMoviesTitleLabel)
         containerView.addSubview(favoritesCollection)
     }
@@ -110,12 +131,16 @@ class CMProfileView: UIViewController, CMProfileViewProtocol {
             profileTitleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
             profileTitleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
             
-            profilePictureImage.topAnchor.constraint(equalTo: profileTitleLabel.bottomAnchor, constant: .dimen20),
-            profilePictureImage.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-            profilePictureImage.heightAnchor.constraint(greaterThanOrEqualToConstant: 50),
-            profilePictureImage.heightAnchor.constraint(lessThanOrEqualToConstant: 150),
+            profileDataContainerView.topAnchor.constraint(equalTo: profileTitleLabel.bottomAnchor, constant: .dimen20),
+            profileDataContainerView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            profileDataContainerView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            profileDataContainerView.bottomAnchor.constraint(equalTo: favoriteMoviesTitleLabel.topAnchor, constant: -.dimen20),
+            
+            profilePictureImage.topAnchor.constraint(equalTo: profileDataContainerView.topAnchor, constant: .dimen20),
+            profilePictureImage.leadingAnchor.constraint(equalTo: profileDataContainerView.leadingAnchor, constant: .dimen20),
+            profilePictureImage.heightAnchor.constraint(equalToConstant: .imageSize150),
             profilePictureImage.widthAnchor.constraint(equalTo: profilePictureImage.heightAnchor),
-            profilePictureImage.bottomAnchor.constraint(lessThanOrEqualTo: favoriteMoviesTitleLabel.topAnchor, constant: -.dimen20),
+            profilePictureImage.bottomAnchor.constraint(lessThanOrEqualTo: profileDataContainerView.bottomAnchor),
             
             profileNameLabel.centerYAnchor.constraint(equalTo: profilePictureImage.centerYAnchor),
             profileNameLabel.leadingAnchor.constraint(equalTo: profilePictureImage.trailingAnchor, constant: .dimen20),
@@ -137,6 +162,9 @@ class CMProfileView: UIViewController, CMProfileViewProtocol {
        
         CMCoreDataManager.shared.getAllFavoritesCellData { [weak self] favoritesData in
             self?.favoritesData = favoritesData
+            
+            self?.favoriteMoviesTitleLabel.isHidden = self?.favoritesData.isEmpty == true
+            
             self?.favoritesCollection.reloadData()
         }
     }
@@ -147,7 +175,9 @@ class CMProfileView: UIViewController, CMProfileViewProtocol {
 
 extension CMProfileView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.presenter?.requestDetails(movieID: favoritesData[indexPath.row].id ?? 0, controller: self)
+        self.presenter?.requestDetails(movieID: favoritesData[indexPath.row].id ?? 0,
+                                       controller: self,
+                                       delegate: self)
     }
 }
 
@@ -178,8 +208,44 @@ extension CMProfileView: UICollectionViewDataSource {
 }
 
 
+extension CMProfileView: CMProfileViewProtocol {
+    func notifyProfile(response: CMProfileResponse) {
+        profileNameLabel.text = "@\(response.username ?? "")"
+        self.getFavorites()
+        
+        var url = ""
+        
+        if let nonNilTMDBURL = response.avatar?.tmdb?.avatar_path {
+            url = (CMImageConfig.shared.baseURL + CMImageConfig.shared.getImageSize(type: .profile) + nonNilTMDBURL)
+        } else if let nonNilGravatarHASH = response.avatar?.gravatar?.hash {
+            url = (CMAPIServicesURLBaseEnum.gravatar.rawValue + CMAPIServicesURLPrefixEnum.avatar.rawValue + "/\(nonNilGravatarHASH)")
+        }
+        
+        guard !url.isEmpty else {
+            return
+        }
+
+        profilePictureImage.layer.cornerRadius = (profilePictureImage.bounds.height/2.0)
+        profilePictureImage.loadImage(url: url)
+    }
+    
+    func notifyGetViewController() -> UIViewController {
+        return self
+    }
+}
+
+
 extension CMProfileView: CMMovieViewCellProtocol {
     func favoriteCellChanged() {
         getFavorites()
+        self.delegate?.profileFavoritesMoviesChanged()
+    }
+}
+
+
+extension CMProfileView: CMDetailsFavoriteProtocol {
+    func favoriteMovieDetailsChanged() {
+        getFavorites()
+        self.delegate?.profileFavoritesMoviesChanged()
     }
 }

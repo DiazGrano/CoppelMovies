@@ -14,7 +14,12 @@ protocol CMProfilePresenterProtocol: AnyObject {
     var router: CMProfileRouterProtocol? { get set }
     var interactor: CMProfileInteractorProtocol? { get set }
     
-    func requestDetails(movieID: Int, controller: UIViewController)
+    func requestProfile()
+    func responseProfile(response: CMProfileResponse)
+    
+    func requestDetails(movieID: Int, controller: UIViewController, delegate: CMDetailsFavoriteProtocol)
+    
+    func responseFailure(message: String)
 }
 
 class CMProfilePresenter: CMProfilePresenterProtocol {
@@ -23,7 +28,22 @@ class CMProfilePresenter: CMProfilePresenterProtocol {
     var interactor: CMProfileInteractorProtocol?
     
     
-    func requestDetails(movieID: Int, controller: UIViewController) {
-        self.router?.navigateToDetails(movieID: movieID, controller: controller)
+    func requestDetails(movieID: Int, controller: UIViewController, delegate: CMDetailsFavoriteProtocol) {
+        self.router?.navigateToDetails(movieID: movieID, controller: controller, delegate: delegate)
+    }
+    
+    func requestProfile() {
+        CMLoader.show()
+        self.interactor?.getProfile()
+    }
+    
+    func responseProfile(response: CMProfileResponse) {
+        CMLoader.hide()
+        self.view?.notifyProfile(response: response)
+    }
+    
+    func responseFailure(message: String) {
+        CMLoader.hide()
+        self.router?.navigateExit(viewController: self.view?.notifyGetViewController())
     }
 }
