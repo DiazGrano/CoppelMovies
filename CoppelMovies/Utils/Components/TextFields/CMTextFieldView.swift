@@ -104,12 +104,7 @@ class CMTextFieldView: UIView {
 
 
 extension CMTextFieldView: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        self.delegate?.cmTextFieldDidChange(identifier: self.identifier, text: self.text)
-    }
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.delegate?.cmTextFieldDidChange(identifier: self.identifier, text: self.text)
         self.delegate?.cmTextFieldDonePressed?(identifier: self.identifier)
         return true
     }
