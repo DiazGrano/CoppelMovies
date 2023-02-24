@@ -10,4 +10,5 @@ import Foundation
 
 enum CMAPIServicesURLBaseEnum: String {
     case movie3 = "https://api.themoviedb.org/3"
+    case gravatar = "https://secure.gravatar.com"
 }
