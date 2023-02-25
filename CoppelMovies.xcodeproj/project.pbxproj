@@ -29,6 +29,11 @@
 		82130A9929A8746A006D9E7D /* FavoriteMovie+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82130A9729A8746A006D9E7D /* FavoriteMovie+CoreDataProperties.swift */; };
 		823A191229A9434100DFB6D3 /* CMVideoSitesEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823A191129A9434100DFB6D3 /* CMVideoSitesEnum.swift */; };
 		823A191429A974FB00DFB6D3 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823A191329A974FB00DFB6D3 /* Int+Extension.swift */; };
+		823A191629A9948600DFB6D3 /* CMTextStringsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823A191529A9948600DFB6D3 /* CMTextStringsEnum.swift */; };
+		823A191829A9968B00DFB6D3 /* CMIconsStringsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823A191729A9968B00DFB6D3 /* CMIconsStringsEnum.swift */; };
+		823A191A29A997AF00DFB6D3 /* CMHeadersStringsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823A191929A997AF00DFB6D3 /* CMHeadersStringsEnum.swift */; };
+		823A191C29A997FB00DFB6D3 /* CMQueryItemsStringsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823A191B29A997FB00DFB6D3 /* CMQueryItemsStringsEnum.swift */; };
+		823A191E29A9987F00DFB6D3 /* CMNetworkErrorStringsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823A191D29A9987F00DFB6D3 /* CMNetworkErrorStringsEnum.swift */; };
 		8261FA7929A6717B001638C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261FA7829A6717B001638C8 /* AppDelegate.swift */; };
 		8261FA8329A6717B001638C8 /* CoppelMovies.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8261FA8129A6717B001638C8 /* CoppelMovies.xcdatamodeld */; };
 		8261FA8529A6717C001638C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8261FA8429A6717C001638C8 /* Assets.xcassets */; };
@@ -84,6 +89,11 @@
 		82130A9729A8746A006D9E7D /* FavoriteMovie+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoriteMovie+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		823A191129A9434100DFB6D3 /* CMVideoSitesEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMVideoSitesEnum.swift; sourceTree = "<group>"; };
 		823A191329A974FB00DFB6D3 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
+		823A191529A9948600DFB6D3 /* CMTextStringsEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMTextStringsEnum.swift; sourceTree = "<group>"; };
+		823A191729A9968B00DFB6D3 /* CMIconsStringsEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMIconsStringsEnum.swift; sourceTree = "<group>"; };
+		823A191929A997AF00DFB6D3 /* CMHeadersStringsEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMHeadersStringsEnum.swift; sourceTree = "<group>"; };
+		823A191B29A997FB00DFB6D3 /* CMQueryItemsStringsEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMQueryItemsStringsEnum.swift; sourceTree = "<group>"; };
+		823A191D29A9987F00DFB6D3 /* CMNetworkErrorStringsEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMNetworkErrorStringsEnum.swift; sourceTree = "<group>"; };
 		8261FA7529A6717B001638C8 /* CoppelMovies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoppelMovies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8261FA7829A6717B001638C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8261FA8229A6717B001638C8 /* CoppelMovies.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoppelMovies.xcdatamodel; sourceTree = "<group>"; };
@@ -382,6 +392,11 @@
 				82130A7D29A7F53D006D9E7D /* CMAPIServicesRequestMethodEnum.swift */,
 				82130A8D29A85A92006D9E7D /* CMImageConfigSizeEnum.swift */,
 				823A191129A9434100DFB6D3 /* CMVideoSitesEnum.swift */,
+				823A191529A9948600DFB6D3 /* CMTextStringsEnum.swift */,
+				823A191729A9968B00DFB6D3 /* CMIconsStringsEnum.swift */,
+				823A191929A997AF00DFB6D3 /* CMHeadersStringsEnum.swift */,
+				823A191B29A997FB00DFB6D3 /* CMQueryItemsStringsEnum.swift */,
+				823A191D29A9987F00DFB6D3 /* CMNetworkErrorStringsEnum.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -509,6 +524,7 @@
 			files = (
 				8261FAB129A679F4001638C8 /* CMProfileInteractor.swift in Sources */,
 				823A191229A9434100DFB6D3 /* CMVideoSitesEnum.swift in Sources */,
+				823A191E29A9987F00DFB6D3 /* CMNetworkErrorStringsEnum.swift in Sources */,
 				8261FABD29A67A55001638C8 /* CMDetailsPresenter.swift in Sources */,
 				8261FADB29A6FB5D001638C8 /* CMFavoriteButtonView.swift in Sources */,
 				8261FACA29A68F05001638C8 /* CGFloat+Extension.swift in Sources */,
@@ -516,7 +532,9 @@
 				8261FA9B29A67972001638C8 /* CMLoginInteractor.swift in Sources */,
 				8261FAA929A679C4001638C8 /* CMCatalogEntity.swift in Sources */,
 				8261FAD029A68FA8001638C8 /* CMButtonView.swift in Sources */,
+				823A191A29A997AF00DFB6D3 /* CMHeadersStringsEnum.swift in Sources */,
 				8261FABB29A67A4B001638C8 /* CMDetailsView.swift in Sources */,
+				823A191C29A997FB00DFB6D3 /* CMQueryItemsStringsEnum.swift in Sources */,
 				8261FA9929A6796A001638C8 /* CMLoginPresenter.swift in Sources */,
 				8261FA9729A67961001638C8 /* CMLoginView.swift in Sources */,
 				82130A8029A800FE006D9E7D /* CMTokenResponse.swift in Sources */,
@@ -556,6 +574,8 @@
 				8261FAAD29A679E6001638C8 /* CMProfileView.swift in Sources */,
 				8261FA8329A6717B001638C8 /* CoppelMovies.xcdatamodeld in Sources */,
 				82130A9929A8746A006D9E7D /* FavoriteMovie+CoreDataProperties.swift in Sources */,
+				823A191629A9948600DFB6D3 /* CMTextStringsEnum.swift in Sources */,
+				823A191829A9968B00DFB6D3 /* CMIconsStringsEnum.swift in Sources */,
 				82130A8C29A859BA006D9E7D /* CMImageConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
