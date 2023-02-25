@@ -31,7 +31,7 @@ class CMCatalogView: UIViewController {
     lazy var containerView: UIView = {
        let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        
+        view.backgroundColor = .cmDarkGreen
         return view
     }()
     
@@ -40,6 +40,9 @@ class CMCatalogView: UIViewController {
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         segmentedControl.backgroundColor = .clear
         segmentedControl.selectedSegmentTintColor = .cmGray
+
+        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.cmLightGray], for: .normal)
+        
         segmentedControl.addTarget(self, action: #selector(categorySelected), for: .valueChanged)
         
         for n in 0..<catalogData.count {
@@ -70,7 +73,7 @@ class CMCatalogView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .cmDarkGreen
+        view.backgroundColor = .cmDarkGray
         
         navigationController?.setNavigationBarHidden(false, animated: true)
         navigationController?.navigationBar.topItem?.hidesBackButton = true
@@ -95,18 +98,18 @@ class CMCatalogView: UIViewController {
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            containerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: .dimen20),
-            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .dimen20),
-            containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -.dimen20),
+            containerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            categoriesSegmentedControl.topAnchor.constraint(equalTo: containerView.topAnchor),
-            categoriesSegmentedControl.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-            categoriesSegmentedControl.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            categoriesSegmentedControl.topAnchor.constraint(equalTo: containerView.topAnchor, constant: .dimen20),
+            categoriesSegmentedControl.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: .dimen20),
+            categoriesSegmentedControl.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -.dimen20),
             
             catalogCollection.topAnchor.constraint(equalTo: categoriesSegmentedControl.bottomAnchor, constant: .dimen20),
-            catalogCollection.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-            catalogCollection.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            catalogCollection.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: .dimen20),
+            catalogCollection.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -.dimen20),
             catalogCollection.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
             
         ])
@@ -233,9 +236,8 @@ extension CMCatalogView: UICollectionViewDelegate {
 
 extension CMCatalogView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = ((containerView.frame.width - .dimen20)/2.0)
-        let height = ((containerView.frame.height - .dimen20)/2.0)
-        return CGSize(width: width, height: height <= 300 ? 300 : height)
+        let width = ((catalogCollection.frame.width - .dimen20)/2.0)
+        return CGSize(width: width, height: CGFloat.movieCellHeight)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

@@ -178,7 +178,7 @@ class CMMovieViewCell: UICollectionViewCell {
             descriptionLabel.topAnchor.constraint(equalTo: releaseDateLabel.bottomAnchor, constant: .dimen15),
             descriptionLabel.leadingAnchor.constraint(equalTo: movieInfoView.leadingAnchor),
             descriptionLabel.trailingAnchor.constraint(equalTo: movieInfoView.trailingAnchor),
-            descriptionLabel.bottomAnchor.constraint(equalTo: movieInfoView.bottomAnchor),
+            descriptionLabel.bottomAnchor.constraint(lessThanOrEqualTo: movieInfoView.bottomAnchor),
         ])
     }
     

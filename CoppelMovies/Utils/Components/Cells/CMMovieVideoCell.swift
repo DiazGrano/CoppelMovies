@@ -62,6 +62,8 @@ class CMMovieVideoCell: UICollectionViewCell {
     
     
     func setData(videoKey: String) {
-        videoView.load(withVideoId: videoKey)
+        DispatchQueue.main.async {
+            self.videoView.load(withVideoId: videoKey)
+        }
     }
 }

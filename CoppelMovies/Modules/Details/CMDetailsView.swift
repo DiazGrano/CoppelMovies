@@ -286,43 +286,45 @@ class CMDetailsView: UIViewController {
 
 extension CMDetailsView: CMDetailsViewProtocol {
     func notifyMovieDetails(response: CMDetailsResponse, videos: CMDetailsVideosResponse?) {
-        CMCoreDataManager.shared.getFavoriteStatus(id: response.id ?? 0) { status in
-            self.favoriteButton.setFavorite(status: status)
+        DispatchQueue.main.async {
+            CMCoreDataManager.shared.getFavoriteStatus(id: response.id ?? 0) { status in
+                self.favoriteButton.setFavorite(status: status)
+            }
+            
+            self.movieDetailsData = CMCatalogCellModel(posterPath: response.poster_path ?? "",
+                                                  overview: response.overview ?? "",
+                                                  releaseDate: response.release_date ?? "",
+                                                  genreIDs: nil,
+                                                  id: response.id ?? 0,
+                                                  title: response.title ?? "",
+                                                  voteAverage: response.vote_average ?? 0.0)
+            
+            self.movieImage.loadImage(url: (CMImageConfig.shared.baseURL + CMImageConfig.shared.getImageSize(type: .poster, size: .largest) + (response.poster_path ?? "")))
+            self.titleLabel.text = response.title ?? ""
+            self.releaseDateLabel.text = response.release_date ?? ""
+            self.ratingLabel.text = String(response.vote_average ?? 0.0)
+            self.descriptionLabel.text = response.overview ?? ""
+            
+            
+            self.budgetLabel.text = (response.budget ?? 0).getFormattedCurrency()
+            self.revenueLabel.text = (response.revenue ?? 0).getFormattedCurrency()
+            
+            
+            
+            let genres = response.genres?.compactMap({ String($0.name ?? "") }) ?? []
+            self.genresView.setGenres(data: genres)
+            
+            self.productionCompaniesView.setProductionCompanies(data: response.production_companies ?? [])
+            
+            guard let nonNilVideos = videos?.results, !nonNilVideos.isEmpty else {
+                return
+            }
+            
+            let youtubeVideos = nonNilVideos.filter({ $0.site == CMVideoSitesEnum.youtube.rawValue })
+            
+            let videoKeys = youtubeVideos.compactMap({ String($0.key ?? "") })
+            self.videosView.setVideos(data: videoKeys)
         }
-        
-        movieDetailsData = CMCatalogCellModel(posterPath: response.poster_path ?? "",
-                                              overview: response.overview ?? "",
-                                              releaseDate: response.release_date ?? "",
-                                              genreIDs: nil,
-                                              id: response.id ?? 0,
-                                              title: response.title ?? "",
-                                              voteAverage: response.vote_average ?? 0.0)
-        
-        movieImage.loadImage(url: (CMImageConfig.shared.baseURL + CMImageConfig.shared.getImageSize(type: .poster, size: .largest) + (response.poster_path ?? "")))
-        titleLabel.text = response.title ?? ""
-        releaseDateLabel.text = response.release_date ?? ""
-        ratingLabel.text = String(response.vote_average ?? 0.0)
-        descriptionLabel.text = response.overview ?? ""
-        
-        
-        budgetLabel.text = (response.budget ?? 0).getFormattedCurrency()
-        revenueLabel.text = (response.revenue ?? 0).getFormattedCurrency()
-        
-        
-        
-        let genres = response.genres?.compactMap({ String($0.name ?? "") }) ?? []
-        genresView.setGenres(data: genres)
-        
-        productionCompaniesView.setProductionCompanies(data: response.production_companies ?? [])
-        
-        guard let nonNilVideos = videos?.results, !nonNilVideos.isEmpty else {
-            return
-        }
-        
-        let youtubeVideos = nonNilVideos.filter({ $0.site == CMVideoSitesEnum.youtube.rawValue })
-        
-        let videoKeys = youtubeVideos.compactMap({ String($0.key ?? "") })
-        videosView.setVideos(data: videoKeys)
     }
 }
 

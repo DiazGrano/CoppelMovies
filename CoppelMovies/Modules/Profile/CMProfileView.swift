@@ -152,7 +152,7 @@ class CMProfileView: UIViewController {
             
             favoritesCollection.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
             favoritesCollection.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-            favoritesCollection.heightAnchor.constraint(equalToConstant: 300),
+            favoritesCollection.heightAnchor.constraint(equalToConstant: .movieCellHeight),
             favoritesCollection.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
         ])
     }
@@ -183,9 +183,8 @@ extension CMProfileView: UICollectionViewDelegate {
 
 extension CMProfileView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = ((containerView.frame.width - .dimen20)/2.0)
-        let height = ((containerView.frame.height - .dimen20)/2.0)
-        return CGSize(width: width, height: height <= 300 ? 300 : height)
+        let width = ((favoritesCollection.frame.width - .dimen20)/2.0)
+        return CGSize(width: width, height: CGFloat.movieCellHeight)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
