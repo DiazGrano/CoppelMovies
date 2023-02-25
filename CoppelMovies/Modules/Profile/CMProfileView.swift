@@ -215,7 +215,7 @@ extension CMProfileView: CMProfileViewProtocol {
         
         var url = ""
         
-        if let nonNilTMDBURL = response.avatar?.tmdb?.avatar_path {
+        if let nonNilTMDBURL = response.avatar?.tmdb?.avatarPath {
             url = (CMImageConfig.shared.baseURL + CMImageConfig.shared.getImageSize(type: .profile) + nonNilTMDBURL)
         } else if let nonNilGravatarHASH = response.avatar?.gravatar?.hash {
             url = (CMAPIServicesURLBaseEnum.gravatar.rawValue + CMAPIServicesURLPrefixEnum.avatar.rawValue + "/\(nonNilGravatarHASH)")

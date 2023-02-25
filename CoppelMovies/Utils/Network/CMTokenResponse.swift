@@ -10,6 +10,12 @@ import Foundation
 
 struct CMTokenResponse: Codable {
     var success: Bool?
-    var expires_at: String?
-    var request_token: String?
+    var expiresAt: String?
+    var token: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case success = "success"
+        case expiresAt = "expires_at"
+        case token = "request_token"
+    }
 }

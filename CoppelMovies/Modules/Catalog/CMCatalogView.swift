@@ -179,15 +179,15 @@ class CMCatalogView: UIViewController {
 extension CMCatalogView: CMCatalogViewProtocol {
     func notifyMovies(response: CMCatalogResponse) {
         catalogData[currentCategory].currentPage = response.page ?? 1
-        catalogData[currentCategory].totalPages = response.total_pages ?? Int.max
+        catalogData[currentCategory].totalPages = response.totalPages ?? Int.max
         for movieData in (response.results ?? []) {
-            catalogData[currentCategory].movies.append(CMCatalogCellModel(posterPath: movieData.poster_path,
+            catalogData[currentCategory].movies.append(CMCatalogCellModel(posterPath: movieData.posterPath,
                                                                           overview: movieData.overview,
-                                                                          releaseDate: movieData.release_date,
-                                                                          genreIDs: movieData.genre_ids,
+                                                                          releaseDate: movieData.releaseDate,
+                                                                          genreIDs: movieData.genreIDs,
                                                                           id: movieData.id,
                                                                           title: movieData.title,
-                                                                          voteAverage: movieData.vote_average))
+                                                                          voteAverage: movieData.averageVote))
         }
         
         catalogCollection.reloadData()

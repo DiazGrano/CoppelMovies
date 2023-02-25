@@ -24,7 +24,7 @@ class CMCatalogInteractor {
 
 extension CMCatalogInteractor: CMCatalogInteractorProtocol {
     func deleteLogout() {
-        let request = CMCatalogLogoutRequest(session_id: CMAPIServicesManager.shared.sessionID)
+        let request = CMCatalogLogoutRequest(sessionID: CMAPIServicesManager.shared.sessionID)
         
         let url = (CMAPIServicesURLBaseEnum.movie3.rawValue + CMAPIServicesURLPrefixEnum.auth.rawValue + CMAPIServicesURLEndpointEnum.logout.rawValue)
         

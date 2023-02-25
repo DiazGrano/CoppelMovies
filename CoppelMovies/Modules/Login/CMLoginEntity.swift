@@ -9,15 +9,28 @@ import Foundation
 
 struct CMLoginRequest: Codable {
     var username: String
-    var password: String
-    var request_token: String
+    var credential: String
+    var token: String
+    
+    enum CodingKeys: String, CodingKey {
+        case username = "username"
+        case credential = "password"
+        case token = "request_token"
+    }
 }
 
 struct CMLoginResponse: Codable {
     var success: Bool?
-    var expires_at: String?
-    var request_token: String?
-    var status_message: String?
+    var expiresAt: String?
+    var token: String?
+    var statusMessage: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case success = "success"
+        case expiresAt = "expires_at"
+        case token = "request_token"
+        case statusMessage = "status_message"
+    }
 }
 
 
@@ -25,20 +38,41 @@ struct CMConfigResponse: Codable {
     var images: ImagesData?
     
     struct ImagesData: Codable {
-        var secure_base_url: String?
-        var logo_sizes: [String]?
-        var poster_sizes: [String]?
-        var profile_sizes: [String]?
+        var baseURL: String?
+        var logoSizes: [String]?
+        var posterSizes: [String]?
+        var profileSizes: [String]?
+        
+        enum CodingKeys: String, CodingKey {
+            case baseURL = "secure_base_url"
+            case logoSizes = "logo_sizes"
+            case posterSizes = "poster_sizes"
+            case profileSizes = "profile_sizes"
+        }
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case images = "images"
     }
 }
 
 
 struct CMLoginSessionRequest: Codable {
-    var request_token: String
+    var token: String
+    
+    enum CodingKeys: String, CodingKey {
+        case token = "request_token"
+    }
 }
 
 struct CMLoginSessionResponse: Codable {
     var success: Bool?
-    var session_id: String?
-    var status_message: String?
+    var sessionID: String?
+    var statusMessage: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case success = "success"
+        case sessionID = "session_id"
+        case statusMessage = "status_message"
+    }
 }

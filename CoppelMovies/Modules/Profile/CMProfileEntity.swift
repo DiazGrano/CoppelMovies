@@ -18,11 +18,32 @@ struct CMProfileResponse: Codable {
         var gravatar: Gravatar?
         struct Gravatar: Codable {
             var hash: String?
+            
+            enum CodingKeys: String, CodingKey {
+                case hash = "hash"
+            }
         }
         
         var tmdb: TMDB?
         struct TMDB: Codable {
-            var avatar_path: String?
+            var avatarPath: String?
+            
+            enum CodingKeys: String, CodingKey {
+                case avatarPath = "avatar_path"
+            }
+        }
+        
+        enum CodingKeys: String, CodingKey {
+            case gravatar = "gravatar"
+            case tmdb = "tmdb"
         }
     }
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case username = "username"
+        case avatar = "avatar"
+    }
+    
 }

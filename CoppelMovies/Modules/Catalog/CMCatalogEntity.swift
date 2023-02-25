@@ -11,17 +11,33 @@ import UIKit
 
 struct CMCatalogResponse: Codable {
     var page: Int?
-    var total_pages: Int?
+    var totalPages: Int?
     var results: [Result]?
     
     struct Result: Codable {
-        var poster_path: String?
+        var posterPath: String?
         var overview: String?
-        var release_date: String?
-        var genre_ids: [Int]?
+        var releaseDate: String?
+        var genreIDs: [Int]?
         var id: Int?
         var title: String?
-        var vote_average: Float?
+        var averageVote: Float?
+        
+        enum CodingKeys: String, CodingKey {
+            case posterPath = "poster_path"
+            case overview = "overview"
+            case releaseDate = "release_date"
+            case genreIDs = "genre_ids"
+            case id = "id"
+            case title = "title"
+            case averageVote = "vote_average"
+        }
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case page = "page"
+        case totalPages = "total_pages"
+        case results = "results"
     }
 }
 
@@ -71,9 +87,17 @@ struct CMCatalogCellModel {
 
 
 struct CMCatalogLogoutRequest: Codable {
-    var session_id: String?
+    var sessionID: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case sessionID = "session_id"
+    }
 }
 
 struct CMCatalogLogoutResponse: Codable {
     var success: Bool?
+    
+    enum CodingKeys: String, CodingKey {
+        case success = "success"
+    }
 }

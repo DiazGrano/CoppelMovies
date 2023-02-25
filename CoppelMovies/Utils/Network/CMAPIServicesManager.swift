@@ -98,7 +98,7 @@ class CMAPIServicesManager {
         let tokenURL = (CMAPIServicesURLBaseEnum.movie3.rawValue + CMAPIServicesURLPrefixEnum.auth.rawValue + CMAPIServicesURLEndpointEnum.token.rawValue)
         
         self.request(url: tokenURL, method: .get, body: nil, responseType: CMTokenResponse.self) { response in
-            guard let newToken = response.request_token, let expiration = response.expires_at, response.success == true else {
+            guard let newToken = response.token, let expiration = response.expiresAt, response.success == true else {
                 DispatchQueue.main.async {
                     failure(CMNetworkErrorStringsEnum.BadResponse.rawValue)
                 }

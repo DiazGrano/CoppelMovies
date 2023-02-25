@@ -83,7 +83,7 @@ class CMProductionCompanyViewCell: UICollectionViewCell {
     
     func setData(productionCompany: CMDetailsResponse.ProductionCompany) {
         self.contentView.layer.cornerRadius = (self.bounds.height/2.0)
-        guard let nonNilLogo = productionCompany.logo_path else {
+        guard let nonNilLogo = productionCompany.logoPath else {
             companyNameLabel.text = productionCompany.name ?? ""
             companyNameLabel.isHidden = false
             companyLogoImage.isHidden = true

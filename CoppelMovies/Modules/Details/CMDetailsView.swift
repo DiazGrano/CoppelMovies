@@ -294,18 +294,18 @@ extension CMDetailsView: CMDetailsViewProtocol {
                 self.favoriteButton.setFavorite(status: status)
             }
             
-            self.movieDetailsData = CMCatalogCellModel(posterPath: response.poster_path ?? "",
+            self.movieDetailsData = CMCatalogCellModel(posterPath: response.posterPath ?? "",
                                                   overview: response.overview ?? "",
-                                                  releaseDate: response.release_date ?? "",
+                                                  releaseDate: response.releaseDate ?? "",
                                                   genreIDs: nil,
                                                   id: response.id ?? 0,
                                                   title: response.title ?? "",
-                                                  voteAverage: response.vote_average ?? 0.0)
+                                                  voteAverage: response.averageVote ?? 0.0)
             
-            self.movieImage.loadImage(url: (CMImageConfig.shared.baseURL + CMImageConfig.shared.getImageSize(type: .poster, size: .largest) + (response.poster_path ?? "")))
+            self.movieImage.loadImage(url: (CMImageConfig.shared.baseURL + CMImageConfig.shared.getImageSize(type: .poster, size: .largest) + (response.posterPath ?? "")))
             self.titleLabel.text = response.title ?? ""
-            self.releaseDateLabel.text = response.release_date ?? ""
-            self.ratingLabel.text = String(response.vote_average ?? 0.0)
+            self.releaseDateLabel.text = response.releaseDate ?? ""
+            self.ratingLabel.text = String(response.averageVote ?? 0.0)
             self.descriptionLabel.text = response.overview ?? ""
             
             
@@ -317,7 +317,7 @@ extension CMDetailsView: CMDetailsViewProtocol {
             let genres = response.genres?.compactMap({ String($0.name ?? "") }) ?? []
             self.genresView.setGenres(data: genres)
             
-            self.productionCompaniesView.setProductionCompanies(data: response.production_companies ?? [])
+            self.productionCompaniesView.setProductionCompanies(data: response.productionCompanies ?? [])
             
             guard let nonNilVideos = videos?.results, !nonNilVideos.isEmpty else {
                 return

@@ -21,8 +21,8 @@ class CMLoginInteractor {
     
     private func login(username: String, credential: String, token: String) {
         let request = CMLoginRequest(username: username,
-                                      password: credential,
-                                      request_token: token)
+                                      credential: credential,
+                                      token: token)
         let url = (CMAPIServicesURLBaseEnum.movie3.rawValue + CMAPIServicesURLPrefixEnum.auth.rawValue + CMAPIServicesURLEndpointEnum.login.rawValue)
         
         CMAPIServicesManager.shared.request(url: url,
@@ -30,7 +30,7 @@ class CMLoginInteractor {
                                   body: request,
                                   responseType: CMLoginResponse.self) { [weak self] response in
             guard response.success == true else {
-                self?.presenter?.responseFailure(message: response.status_message ?? "")
+                self?.presenter?.responseFailure(message: response.statusMessage ?? "")
                 return
             }
             self?.createSession(token: token)
@@ -40,7 +40,7 @@ class CMLoginInteractor {
     }
     
     private func createSession(token: String) {
-        let request = CMLoginSessionRequest(request_token: token)
+        let request = CMLoginSessionRequest(token: token)
         
         let url = (CMAPIServicesURLBaseEnum.movie3.rawValue + CMAPIServicesURLPrefixEnum.auth.rawValue + CMAPIServicesURLEndpointEnum.session.rawValue)
         
@@ -48,8 +48,8 @@ class CMLoginInteractor {
                                   method: .post,
                                   body: request,
                                   responseType: CMLoginSessionResponse.self) { [weak self] response in
-            guard response.success == true, let sessionID = response.session_id else {
-                self?.presenter?.responseFailure(message: response.status_message ?? "")
+            guard response.success == true, let sessionID = response.sessionID else {
+                self?.presenter?.responseFailure(message: response.statusMessage ?? "")
                 return
             }
             CMAPIServicesManager.shared.sessionID = sessionID
@@ -64,10 +64,10 @@ class CMLoginInteractor {
     private func getConfig(completion: @escaping (() -> ())) {
         let url = (CMAPIServicesURLBaseEnum.movie3.rawValue + CMAPIServicesURLEndpointEnum.config.rawValue)
         CMAPIServicesManager.shared.request(url: url, method: .get, body: nil, responseType: CMConfigResponse.self) { response in
-            CMImageConfig.shared.baseURL = response.images?.secure_base_url ?? ""
-            CMImageConfig.shared.logoSizes = response.images?.logo_sizes ?? []
-            CMImageConfig.shared.posterSizes = response.images?.poster_sizes ?? []
-            CMImageConfig.shared.profileSizes = response.images?.profile_sizes ?? []
+            CMImageConfig.shared.baseURL = response.images?.baseURL ?? ""
+            CMImageConfig.shared.logoSizes = response.images?.logoSizes ?? []
+            CMImageConfig.shared.posterSizes = response.images?.posterSizes ?? []
+            CMImageConfig.shared.profileSizes = response.images?.profileSizes ?? []
             completion()
         } failure: { _ in
             completion()
