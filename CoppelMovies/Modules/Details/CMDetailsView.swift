@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+
 protocol CMDetailsFavoriteProtocol: AnyObject {
     func favoriteMovieDetailsChanged()
 }
@@ -19,11 +20,13 @@ protocol CMDetailsViewProtocol: AnyObject {
     func notifyMovieDetails(response: CMDetailsResponse, videos: CMDetailsVideosResponse?)
 }
 
+
 class CMDetailsView: UIViewController {
     weak var delegate: CMDetailsFavoriteProtocol?
     var presenter: CMDetailsPresenterProtocol?
     private var movieDetailsData: CMCatalogCellModel?
     var movieID: Int = 0
+    
     
     lazy var containerScrollView: UIScrollView = {
        let scroll = UIScrollView()

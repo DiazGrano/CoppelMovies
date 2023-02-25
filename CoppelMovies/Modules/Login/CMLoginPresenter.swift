@@ -6,6 +6,8 @@
 //
 
 import Foundation
+
+
 protocol CMLoginPresenterProtocol: AnyObject {
     var view: CMLoginViewProtocol? { get set }
     var router: CMLoginRouterProtocol? { get set }
@@ -17,12 +19,15 @@ protocol CMLoginPresenterProtocol: AnyObject {
     func responseFailure(message: String)
 }
 
-class CMLoginPresenter: CMLoginPresenterProtocol {
+
+class CMLoginPresenter {
     weak var view: CMLoginViewProtocol?
     var router: CMLoginRouterProtocol?
     var interactor: CMLoginInteractorProtocol?
-    
-    
+}
+
+
+extension CMLoginPresenter: CMLoginPresenterProtocol {
     func requestLogin(username: String, credential: String) {
         CMLoader.show()
         self.interactor?.postLogin(username: username, credential: credential)

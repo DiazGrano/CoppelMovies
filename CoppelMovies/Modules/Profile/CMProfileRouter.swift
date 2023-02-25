@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+
 protocol CMProfileRouterProtocol: AnyObject {
     static func create(delegate: CMProfileFavoriteProtocol) -> UIViewController
     
@@ -16,7 +17,13 @@ protocol CMProfileRouterProtocol: AnyObject {
     func navigateExit(viewController: UIViewController?)
 }
 
-class CMProfileRouter: CMProfileRouterProtocol {
+
+class CMProfileRouter {
+
+}
+
+
+extension CMProfileRouter: CMProfileRouterProtocol {
     static func create(delegate: CMProfileFavoriteProtocol) -> UIViewController {
         let presenter = CMProfilePresenter()
         let view = CMProfileView()

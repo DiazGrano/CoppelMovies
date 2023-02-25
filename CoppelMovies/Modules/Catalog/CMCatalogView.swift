@@ -116,10 +116,6 @@ class CMCatalogView: UIViewController {
     }
     
     
-    
-    
-    
-    
     @objc func optionsSheet() {
         let alert = UIAlertController(title: "What do you want to do?", message: nil, preferredStyle: .actionSheet)
         
@@ -136,7 +132,6 @@ class CMCatalogView: UIViewController {
         present(alert, animated: true)
     }
     
-    
     @objc func categorySelected() {
         catalogData[currentCategory].offset = catalogCollection.contentOffset
         
@@ -148,7 +143,6 @@ class CMCatalogView: UIViewController {
             requestMovies()
         }
     }
-    
     
     private func requestMovies(requestNewPage: Bool = false) {
         let catalog = catalogData[currentCategory]
@@ -165,11 +159,6 @@ class CMCatalogView: UIViewController {
             self.presenter?.requestMovies(page: page,
                                           endpoint: catalog.category.getEndpoint())
         }
-    }
-    
-    
-    private func checkIfNewPageIsNeeded(cell: Int) {
-        
     }
     
     private func getFavorites() {

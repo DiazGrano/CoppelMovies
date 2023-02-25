@@ -6,6 +6,8 @@
 //
 
 import Foundation
+
+
 protocol CMCatalogInteractorProtocol: AnyObject {
     var presenter: CMCatalogPresenterProtocol? { get set }
     
@@ -14,9 +16,13 @@ protocol CMCatalogInteractorProtocol: AnyObject {
     func deleteLogout()
 }
 
-class CMCatalogInteractor: CMCatalogInteractorProtocol {
+
+class CMCatalogInteractor {
     weak var presenter: CMCatalogPresenterProtocol?
-    
+}
+
+
+extension CMCatalogInteractor: CMCatalogInteractorProtocol {
     func deleteLogout() {
         let request = CMCatalogLogoutRequest(session_id: CMAPIServicesManager.shared.sessionID)
         
@@ -28,7 +34,6 @@ class CMCatalogInteractor: CMCatalogInteractorProtocol {
             self?.presenter?.responseLogout()
         }
     }
-    
     
     func getMovies(page: Int, endpoint: String) {
         let url = (CMAPIServicesURLBaseEnum.movie3.rawValue + CMAPIServicesURLPrefixEnum.movie.rawValue + endpoint)

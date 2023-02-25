@@ -17,7 +17,8 @@ protocol CMLoginViewProtocol: AnyObject {
     func notifyError(message: String)
 }
 
-class CMLoginView: UIViewController, CMLoginViewProtocol {
+
+class CMLoginView: UIViewController {
     var presenter: CMLoginPresenterProtocol?
     
     
@@ -146,7 +147,10 @@ class CMLoginView: UIViewController, CMLoginViewProtocol {
         
         self.presenter?.requestLogin(username: usernameTextView.text, credential: credentialTextView.text)
     }
-    
+}
+
+
+extension CMLoginView: CMLoginViewProtocol {
     func notifyGetNavigation() -> UINavigationController? {
         return self.navigationController
     }

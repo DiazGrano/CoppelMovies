@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+
 protocol CMCatalogRouterProtocol: AnyObject {
     static func create() -> UIViewController
     
@@ -18,9 +19,13 @@ protocol CMCatalogRouterProtocol: AnyObject {
     func navigateBack(navigation: UINavigationController?)
 }
 
-class CMCatalogRouter: CMCatalogRouterProtocol {
-    private var username: String = ""
-    
+
+class CMCatalogRouter {
+
+}
+
+
+extension CMCatalogRouter: CMCatalogRouterProtocol {
     static func create() -> UIViewController {
         let presenter = CMCatalogPresenter()
         let view = CMCatalogView()

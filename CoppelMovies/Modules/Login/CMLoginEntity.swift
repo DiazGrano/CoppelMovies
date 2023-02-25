@@ -21,7 +21,6 @@ struct CMLoginResponse: Codable {
 }
 
 
-
 struct CMConfigResponse: Codable {
     var images: ImagesData?
     

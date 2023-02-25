@@ -22,12 +22,15 @@ protocol CMProfilePresenterProtocol: AnyObject {
     func responseFailure(message: String)
 }
 
-class CMProfilePresenter: CMProfilePresenterProtocol {
+
+class CMProfilePresenter {
     weak var view: CMProfileViewProtocol?
     var router: CMProfileRouterProtocol?
     var interactor: CMProfileInteractorProtocol?
-    
-    
+}
+
+
+extension CMProfilePresenter: CMProfilePresenterProtocol {
     func requestDetails(movieID: Int, controller: UIViewController, delegate: CMDetailsFavoriteProtocol) {
         self.router?.navigateToDetails(movieID: movieID, controller: controller, delegate: delegate)
     }

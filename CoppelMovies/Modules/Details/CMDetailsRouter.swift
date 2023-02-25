@@ -8,11 +8,18 @@
 import Foundation
 import UIKit
 
+
 protocol CMDetailsRouterProtocol: AnyObject {
     static func create(movieID: Int, delegate: CMDetailsFavoriteProtocol) -> UIViewController
 }
 
-class CMDetailsRouter: CMDetailsRouterProtocol {
+
+class CMDetailsRouter {
+
+}
+
+
+extension CMDetailsRouter: CMDetailsRouterProtocol {
     static func create(movieID: Int, delegate: CMDetailsFavoriteProtocol) -> UIViewController {
         let presenter = CMDetailsPresenter()
         let view = CMDetailsView()

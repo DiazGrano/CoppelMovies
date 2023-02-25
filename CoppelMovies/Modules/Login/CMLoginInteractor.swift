@@ -6,22 +6,18 @@
 //
 
 import Foundation
+
+
 protocol CMLoginInteractorProtocol: AnyObject {
     var presenter: CMLoginPresenterProtocol? { get set }
     
     func postLogin(username: String, credential: String)
 }
 
-class CMLoginInteractor: CMLoginInteractorProtocol {
+
+class CMLoginInteractor {
     weak var presenter: CMLoginPresenterProtocol?
     
-    func postLogin(username: String, credential: String) {
-        CMAPIServicesManager.shared.getToken(forceNew: true) { [weak self] token in
-            self?.login(username: username, credential: credential, token: token)
-        } failure: { [weak self] error in
-            self?.presenter?.responseFailure(message: error)
-        }
-    }
     
     private func login(username: String, credential: String, token: String) {
         let request = CMLoginRequest(username: username,
@@ -65,8 +61,6 @@ class CMLoginInteractor: CMLoginInteractorProtocol {
         }
     }
     
-    
-    
     private func getConfig(completion: @escaping (() -> ())) {
         let url = (CMAPIServicesURLBaseEnum.movie3.rawValue + CMAPIServicesURLEndpointEnum.config.rawValue)
         CMAPIServicesManager.shared.request(url: url, method: .get, body: nil, responseType: CMConfigResponse.self) { response in
@@ -77,6 +71,17 @@ class CMLoginInteractor: CMLoginInteractorProtocol {
             completion()
         } failure: { _ in
             completion()
+        }
+    }
+}
+
+
+extension CMLoginInteractor: CMLoginInteractorProtocol {
+    func postLogin(username: String, credential: String) {
+        CMAPIServicesManager.shared.getToken(forceNew: true) { [weak self] token in
+            self?.login(username: username, credential: credential, token: token)
+        } failure: { [weak self] error in
+            self?.presenter?.responseFailure(message: error)
         }
     }
 }

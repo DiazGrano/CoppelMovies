@@ -17,6 +17,7 @@ protocol CMProfileViewProtocol: AnyObject {
     func notifyGetViewController() -> UIViewController
 }
 
+
 protocol CMProfileFavoriteProtocol: AnyObject {
     func profileFavoritesMoviesChanged()
 }
@@ -26,6 +27,7 @@ class CMProfileView: UIViewController {
     var delegate: CMProfileFavoriteProtocol?
     var presenter: CMProfilePresenterProtocol?
     var favoritesData: [CMCatalogCellModel] = []
+    
     
     lazy var containerView: UIView = {
        let view = UIView()
@@ -159,7 +161,6 @@ class CMProfileView: UIViewController {
     
     
     private func getFavorites() {
-       
         CMCoreDataManager.shared.getAllFavoritesCellData { [weak self] favoritesData in
             self?.favoritesData = favoritesData
             
@@ -171,8 +172,6 @@ class CMProfileView: UIViewController {
 }
 
 
-
-
 extension CMProfileView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.presenter?.requestDetails(movieID: favoritesData[indexPath.row].id ?? 0,
@@ -180,6 +179,7 @@ extension CMProfileView: UICollectionViewDelegate {
                                        delegate: self)
     }
 }
+
 
 extension CMProfileView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -191,6 +191,7 @@ extension CMProfileView: UICollectionViewDelegateFlowLayout {
         return .dimen20
     }
 }
+
 
 extension CMProfileView: UICollectionViewDataSource {
     

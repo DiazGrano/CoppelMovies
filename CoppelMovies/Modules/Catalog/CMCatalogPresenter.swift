@@ -27,11 +27,15 @@ protocol CMCatalogPresenterProtocol: AnyObject {
     func responseLogout()
 }
 
-class CMCatalogPresenter: CMCatalogPresenterProtocol {
+
+class CMCatalogPresenter {
     weak var view: CMCatalogViewProtocol?
     var router: CMCatalogRouterProtocol?
     var interactor: CMCatalogInteractorProtocol?
+}
 
+
+extension CMCatalogPresenter: CMCatalogPresenterProtocol {
     func requestProfile(controller: UIViewController, delegate: CMProfileFavoriteProtocol) {
         self.router?.navigateToProfile(controller: controller, delegate: delegate)
     }

@@ -20,12 +20,15 @@ protocol CMDetailsPresenterProtocol: AnyObject {
     func responseFailure(message: String)
 }
 
-class CMDetailsPresenter: CMDetailsPresenterProtocol {
+
+class CMDetailsPresenter {
     weak var view: CMDetailsViewProtocol?
     var router: CMDetailsRouterProtocol?
     var interactor: CMDetailsInteractorProtocol?
-    
+}
 
+
+extension CMDetailsPresenter: CMDetailsPresenterProtocol {
     func requestMovieDetails(id: Int) {
         CMLoader.show()
         self.interactor?.getMovieDetails(id: id)

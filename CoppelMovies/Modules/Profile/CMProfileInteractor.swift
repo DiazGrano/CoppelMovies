@@ -6,16 +6,21 @@
 //
 
 import Foundation
+
+
 protocol CMProfileInteractorProtocol: AnyObject {
     var presenter: CMProfilePresenterProtocol? { get set }
     
     func getProfile()
 }
 
-class CMProfileInteractor: CMProfileInteractorProtocol {
+
+class CMProfileInteractor {
     weak var presenter: CMProfilePresenterProtocol?
-    
-    
+}
+
+
+extension CMProfileInteractor: CMProfileInteractorProtocol {
     func getProfile() {
         let url = (CMAPIServicesURLBaseEnum.movie3.rawValue + CMAPIServicesURLPrefixEnum.account.rawValue)
         

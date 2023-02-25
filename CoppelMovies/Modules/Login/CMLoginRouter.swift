@@ -8,13 +8,20 @@
 import Foundation
 import UIKit
 
+
 protocol CMLoginRouterProtocol: AnyObject {
     static func create() -> UIViewController
     
     func navigateToCatalog(navigation: UINavigationController?)
 }
 
-class CMLoginRouter: CMLoginRouterProtocol {
+
+class CMLoginRouter {
+    
+}
+
+
+extension CMLoginRouter: CMLoginRouterProtocol {
     static func create() -> UIViewController {
         let presenter = CMLoginPresenter()
         let view = CMLoginView()
