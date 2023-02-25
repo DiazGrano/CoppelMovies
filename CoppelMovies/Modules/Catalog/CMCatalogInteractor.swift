@@ -38,7 +38,8 @@ extension CMCatalogInteractor: CMCatalogInteractorProtocol {
     func getMovies(page: Int, endpoint: String) {
         let url = (CMAPIServicesURLBaseEnum.movie3.rawValue + CMAPIServicesURLPrefixEnum.movie.rawValue + endpoint)
         
-        let finalURL = CMAPIServicesManager.shared.appendToURLStr(url: url, queryItems: ["page":"\(page)"])
+        let finalURL = CMAPIServicesManager.shared.appendToURLStr(url: url,
+                                                                  queryItems: [CMQueryItemsStringsEnum.Page.rawValue:"\(page)"])
         
         CMAPIServicesManager.shared.request(url: finalURL, method: .get, body: nil, responseType: CMCatalogResponse.self) { [weak self] response in
             self?.presenter?.responseMovies(response: response)

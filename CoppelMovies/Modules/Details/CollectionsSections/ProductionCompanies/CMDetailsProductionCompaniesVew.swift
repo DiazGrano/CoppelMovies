@@ -23,7 +23,7 @@ class CMDetailsProductionCompaniesVew: UIView {
     lazy var productionCompaniesTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Production companies"
+        label.text = CMTextStringsEnum.DetailsProductionCompaniesTitle.rawValue
         label.font = .systemFont(ofSize: 14, weight: .bold)
         label.textColor = .cmGreen
         

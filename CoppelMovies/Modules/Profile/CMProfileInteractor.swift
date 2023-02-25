@@ -25,7 +25,7 @@ extension CMProfileInteractor: CMProfileInteractorProtocol {
         let url = (CMAPIServicesURLBaseEnum.movie3.rawValue + CMAPIServicesURLPrefixEnum.account.rawValue)
         
         let finalURL = CMAPIServicesManager.shared.appendToURLStr(url: url,
-                                                                  queryItems: ["session_id":"\(CMAPIServicesManager.shared.sessionID)"])
+                                                                  queryItems: [CMQueryItemsStringsEnum.SessionID.rawValue:"\(CMAPIServicesManager.shared.sessionID)"])
         
         CMAPIServicesManager.shared.request(url: finalURL,
                                             method: .get,

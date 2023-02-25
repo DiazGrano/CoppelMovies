@@ -88,7 +88,7 @@ class CMDetailsView: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         imageView.tintColor = .cmGreen
-        imageView.image = UIImage(systemName: "star.fill")
+        imageView.image = UIImage(systemName: CMIconsStringsEnum.RatingIconName.rawValue)
         
         return imageView
     }()
@@ -122,7 +122,7 @@ class CMDetailsView: UIViewController {
     lazy var budgetTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Budget"
+        label.text = CMTextStringsEnum.DetailsBudgetTitle.rawValue
         label.font = .systemFont(ofSize: 14, weight: .bold)
         label.textColor = .cmGreen
         
@@ -143,7 +143,7 @@ class CMDetailsView: UIViewController {
     lazy var revenueTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Revenue"
+        label.text = CMTextStringsEnum.DetailsRevenueTitle.rawValue
         label.font = .systemFont(ofSize: 14, weight: .bold)
         label.textColor = .cmGreen
         

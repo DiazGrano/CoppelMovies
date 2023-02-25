@@ -77,8 +77,8 @@ class CMCatalogView: UIViewController {
         
         navigationController?.setNavigationBarHidden(false, animated: true)
         navigationController?.navigationBar.topItem?.hidesBackButton = true
-        title = "Movies"
-        navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "list.bullet"),
+        title = CMTextStringsEnum.CatalogTitle.rawValue
+        navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: CMIconsStringsEnum.MenuIconName.rawValue),
                                                                                           style: .plain,
                                                                                           target: self,
                                                                                           action: #selector(optionsSheet))
@@ -117,17 +117,17 @@ class CMCatalogView: UIViewController {
     
     
     @objc func optionsSheet() {
-        let alert = UIAlertController(title: "What do you want to do?", message: nil, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: CMTextStringsEnum.CatalogActionSheetTitle.rawValue, message: nil, preferredStyle: .actionSheet)
         
-        alert.addAction(UIAlertAction(title: "View Profile", style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: CMTextStringsEnum.CatalogActionSheetProfileTitle.rawValue, style: .default, handler: { _ in
             self.presenter?.requestProfile(controller: self, delegate: self)
         }))
         
-        alert.addAction(UIAlertAction(title: "Log out", style: .destructive, handler: { _ in
+        alert.addAction(UIAlertAction(title: CMTextStringsEnum.CatalogActionSheetLogoutTitle.rawValue, style: .destructive, handler: { _ in
             self.presenter?.requestLogout()
         }))
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: CMTextStringsEnum.CatalogActionSheetCancelTitle.rawValue, style: .cancel))
         
         present(alert, animated: true)
     }

@@ -24,7 +24,7 @@ class CMDetailsGenresView: UIView {
     lazy var genresTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Genres"
+        label.text = CMTextStringsEnum.DetailsGenresTitle.rawValue
         label.font = .systemFont(ofSize: 14, weight: .bold)
         label.textColor = .cmGreen
         

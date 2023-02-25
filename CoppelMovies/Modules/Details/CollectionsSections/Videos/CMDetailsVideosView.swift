@@ -23,7 +23,7 @@ class CMDetailsVideosView: UIView {
     lazy var videosTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Videos"
+        label.text = CMTextStringsEnum.DetailsVideosTitle.rawValue
         label.font = .systemFont(ofSize: 14, weight: .bold)
         label.textColor = .cmGreen
         

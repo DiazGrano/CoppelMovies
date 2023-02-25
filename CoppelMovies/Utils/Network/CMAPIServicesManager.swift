@@ -25,7 +25,7 @@ class CMAPIServicesManager {
         self.request(url: url, method: method, body: body) { responseData in
             guard let decodedResponse = try? JSONDecoder().decode(response.self, from: responseData) else {
                 DispatchQueue.main.async {
-                    failure("Malformed response")
+                    failure(CMNetworkErrorStringsEnum.BadResponse.rawValue)
                 }
                 return
             }
@@ -46,7 +46,7 @@ class CMAPIServicesManager {
                  failure: @escaping (String)->()) {
         guard let keyURL = self.getURLWithKey(url: url) else {
             DispatchQueue.main.async {
-                failure("Invalid URL")
+                failure(CMNetworkErrorStringsEnum.BadURL.rawValue)
             }
             return
         }
@@ -56,11 +56,11 @@ class CMAPIServicesManager {
         
         
         if let nonNilBody = body {
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.setValue(CMHeadersStringsEnum.ContentType.getDefaultValue(), forHTTPHeaderField: CMHeadersStringsEnum.ContentType.rawValue)
             
             guard let bodyData = try? JSONEncoder().encode(nonNilBody) else {
                 DispatchQueue.main.async {
-                    failure("Malformed body")
+                    failure(CMNetworkErrorStringsEnum.BadBody.rawValue)
                 }
                 return
             }
@@ -100,7 +100,7 @@ class CMAPIServicesManager {
         self.request(url: tokenURL, method: .get, body: nil, responseType: CMTokenResponse.self) { response in
             guard let newToken = response.request_token, let expiration = response.expires_at, response.success == true else {
                 DispatchQueue.main.async {
-                    failure("Invalid response")
+                    failure(CMNetworkErrorStringsEnum.BadResponse.rawValue)
                 }
                 return
             }
@@ -157,6 +157,6 @@ class CMAPIServicesManager {
     }
     
     func getURLWithKey(url: String) -> URL? {
-        return URL(string: self.appendToURLStr(url: url, queryItems: ["api_key": "\(self.apiKey)"]))
+        return URL(string: self.appendToURLStr(url: url, queryItems: [CMQueryItemsStringsEnum.APIKey.rawValue: "\(self.apiKey)"]))
     }
 }

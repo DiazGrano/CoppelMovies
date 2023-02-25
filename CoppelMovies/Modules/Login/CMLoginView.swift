@@ -37,21 +37,27 @@ class CMLoginView: UIViewController {
     }()
     
     lazy var usernameTextView: CMTextFieldView = {
-       let textView = CMTextFieldView(placeholder: "Username", delegate: self, identifier: "username")
+        let textView = CMTextFieldView(placeholder: CMTextStringsEnum.LoginUsernamePlaceholder.rawValue,
+                                       delegate: self,
+                                       identifier: CMTextStringsEnum.LoginUsernameIdentifier.rawValue)
         textView.translatesAutoresizingMaskIntoConstraints = false
         
         return textView
     }()
     
     lazy var credentialTextView: CMTextFieldView = {
-       let textView = CMTextFieldView(placeholder: "Password", isSecure: true, delegate: self, identifier: "credential")
+        let textView = CMTextFieldView(placeholder: CMTextStringsEnum.LoginCredentialPlaceholder.rawValue,
+                                       isSecure: true,
+                                       delegate: self,
+                                       identifier: CMTextStringsEnum.LoginCredentialIdentifier.rawValue)
         textView.translatesAutoresizingMaskIntoConstraints = false
         
         return textView
     }()
     
     lazy var loginButton: CMButtonView = {
-        let button = CMButtonView(title: "Log in", enabled: false)
+        let button = CMButtonView(title: CMTextStringsEnum.LoginButtonTitle.rawValue,
+                                  enabled: false)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.action = loginButtonTriggered
         
@@ -83,9 +89,6 @@ class CMLoginView: UIViewController {
         
         setUI()
         setConstraints()
-        
-        usernameTextView.text = "luisdiaztest"
-        credentialTextView.text = "Hola_123"
     }
     
     

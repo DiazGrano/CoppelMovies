@@ -39,7 +39,7 @@ class CMProfileView: UIViewController {
     lazy var profileTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Profile"
+        label.text = CMTextStringsEnum.ProfileTitle.rawValue
         label.font = .systemFont(ofSize: 16, weight: .bold)
         label.textColor = .cmGreen
         
@@ -74,7 +74,7 @@ class CMProfileView: UIViewController {
     lazy var favoriteMoviesTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Favorite movies"
+        label.text = CMTextStringsEnum.ProfileFavoritesTitle.rawValue
         label.font = .systemFont(ofSize: 14, weight: .semibold)
         label.textColor = .cmGreen
         label.isHidden = true
